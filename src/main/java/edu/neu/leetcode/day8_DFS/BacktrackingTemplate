@@ -1,0 +1,15 @@
+Backtracking Template:
+ result = []
+ def backtracking(path, candidates):
+    if Satisfy the end condition (path):
+        result.add(path)
+        return
+
+    # iterate all possible candidates.
+    for candidate in candidates:
+        # try this partial candidate solution
+        path.add(candidate)
+        # DFS: given this candidate, explore further
+        backtracking(path, candidates)
+        # backtrack
+        path.remove(candidate)
