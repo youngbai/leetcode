@@ -1,6 +1,6 @@
 package edu.neu.leetcode.day5_2_List;
 
-import commonbean.ListNode;
+import edu.neu.leetcode.commonbean.ListNode;
 
 public class LC19_Remove_Nth_Node_From_End_of_List {
 

@@ -76,7 +76,8 @@ public class Amz_Inversion_Count {
                     arr[k++] = left[i++];
                 else {
                     arr[k++] = right[j++];
-                    count += (m + 1) - (l + i);
+                    //count += (m + 1) - (l + i);
+                    count += left.length - i;
                 }
             }
             while (i < left.length) arr[k++] = left[i++];

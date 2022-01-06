@@ -1,6 +1,6 @@
 package edu.neu.leetcode.day5_1_List;
 
-import commonbean.ListNode;
+import edu.neu.leetcode.commonbean.ListNode;
 
 public class LC92_Reverse_Linked_ListII {
 

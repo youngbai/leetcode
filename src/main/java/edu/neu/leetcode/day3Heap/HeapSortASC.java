@@ -12,7 +12,7 @@ public class HeapSortASC {
         int N = A.length;
 
         // build max heap
-        for (int i = N /2; i >= 0; i--) {
+        for (int i = N / 2; i >= 0; i--) {
             heapify(A, N, i);
         }
 

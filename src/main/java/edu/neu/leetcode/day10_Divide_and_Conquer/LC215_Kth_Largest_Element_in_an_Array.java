@@ -1,7 +1,9 @@
 package edu.neu.leetcode.day10_Divide_and_Conquer;
 
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 public class LC215_Kth_Largest_Element_in_an_Array {
 
@@ -19,7 +21,7 @@ public class LC215_Kth_Largest_Element_in_an_Array {
 
     /*
     Thinking:
-    - quick sort partition
+    - quick sort partition or Quick Select
     - divide and conquer
 
     Intuition:
@@ -40,7 +42,7 @@ public class LC215_Kth_Largest_Element_in_an_Array {
     Other solutions
     Ref: https://leetcode.com/problems/kth-largest-element-in-an-array/discuss/60294/Solution-explained
      */
-    class Solution1 {
+    class Solution1_Quick_Select_Iteration {
         public int findKthLargest(int[] nums, int k) {
             k = nums.length - k;    // turn kth largest problem to (n-k)th smallest problem
             int lo = 0, hi = nums.length - 1;
@@ -75,6 +77,57 @@ public class LC215_Kth_Largest_Element_in_an_Array {
         }
     }
 
+
+    /*
+    Thinking:
+    - Quick Select Recursion implementation
+     */
+    class Solution1_Quick_Select_Recursion {
+        class Solution {
+            public int findKthLargest(int[] nums, int k) {
+                //shuffle(nums);
+                divide(nums, 0, nums.length - 1, k);
+                return nums[nums.length - k];
+            }
+
+            private void shuffle(int[] nums) {
+                Random random = new Random();
+                for (int i = 0; i < nums.length; i++) {
+                    int j = random.nextInt(i + 1);  // [0, i+1)
+                    swap(nums, i, j);
+                }
+                System.out.println(Arrays.toString(nums));
+            }
+
+            private void divide(int[] nums, int left, int right, int k) {
+                if (left >= right) return;
+                int pivotIndex = partition(nums, left, right);
+                if (pivotIndex == nums.length - k) return;
+                else if (pivotIndex < nums.length - k) divide(nums, pivotIndex + 1, right, k);
+                else divide(nums, left, pivotIndex - 1, k);
+            }
+
+            private int partition(int[] nums, int left, int right) {
+                int pivot = nums[right];
+                int i = left;   // i-1: end of left part (<pivot), i: start of the right part (>=pivot)
+                for (int j = left; j < right; j++) {
+                    if (nums[j] < pivot) {
+                        swap(nums, i, j);
+                        i++;
+                    }
+                }
+                swap(nums, i, right);
+                return i;
+            }
+
+            private void swap(int[] nums, int i, int j) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+            }
+        }
+    }
+
     /*
     Thinking:
     - Heap
@@ -88,7 +141,7 @@ public class LC215_Kth_Largest_Element_in_an_Array {
     Time : O(Nlogk)
     Space: O(k)
      */
-    class Solution2 {
+    class Solution2_Heap {
         public int findKthLargest(int[] nums, int k) {
             PriorityQueue<Integer> pq = new PriorityQueue<>((n1, n2) -> n1 - n2);
 

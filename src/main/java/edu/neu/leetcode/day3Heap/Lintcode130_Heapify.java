@@ -22,6 +22,9 @@ public class Lintcode130_Heapify {
     left child:  2 * i + 1
     right child: 2 * i + 2
 
+    left or right child: i
+    parent: (i - 1) / 2
+
     Build Heap Time: O(N)
     See youdao notes: day3_Heap
      */

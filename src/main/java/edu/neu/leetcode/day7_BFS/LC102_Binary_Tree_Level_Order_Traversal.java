@@ -1,6 +1,6 @@
 package edu.neu.leetcode.day7_BFS;
 
-import commonbean.TreeNode;
+import edu.neu.leetcode.commonbean.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

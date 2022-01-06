@@ -1,6 +1,6 @@
 package edu.neu.leetcode.day5_2_List;
 
-import commonbean.ListNode;
+import edu.neu.leetcode.commonbean.ListNode;
 
 public class LC82_Remove_Duplicates_from_Sorted_List_II {
 
