@@ -15,7 +15,7 @@ public class LC451_Sort_Characters_By_Frequency {
     s = ababcadd
     r = aaabbddc
 
-    map
+    map(char->freq)
     a 3
     b 2
     d 2

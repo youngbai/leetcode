@@ -71,6 +71,30 @@ public class LC51_N_Queens {
             return true;
         }
 
+/*
+        // Better valid(), easy understand, less check (check row,column,diagonals instead of every cell)
+        private boolean valid(char[][] M, int x, int y) {
+            // check row
+            for (int col = 0; col < M[0].length; col++)
+                if (M[x][col] == 'Q') return false;
+
+            // check column
+            for (int row = 0; row < M.length; row++)
+                if (M[row][y] == 'Q') return false;
+
+            // check 45 degree diagonal
+            int i = x - 1, j = y + 1;
+            while (i >= 0 && j < M[0].length)
+                if (M[i--][j++] == 'Q') return false;
+
+            // check 135 degree diagonal
+            i = x - 1; j = y - 1;
+            while (i >= 0 && j >= 0)
+                if (M[i--][j--] == 'Q') return false;
+
+            return true;
+        }
+*/
         private List<String> construct(char[][] board) {
             List<String> res = new ArrayList<>();
             for (char[] row : board)

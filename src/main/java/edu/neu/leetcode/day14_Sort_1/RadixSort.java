@@ -4,6 +4,62 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+/*
+Algo:
+- counting sort on last digit
+- counting sort on second last digit
+- counting sort on third last digit
+- ...
+- end
+
+Example:
+Example:
+max = 999
+keep max/exp>0
+999/1>0		countSort
+999/10>0	countSort
+999/100>0	countSort
+999/1000=0	no action
+
+- 1st Loop
+A = [21 12 11]
+exp=1
+
+count
+0 0
+1 2
+2 1
+
+count (prefix sum)
+0 0
+1 2
+2 3
+
+output = [11 21 12]
+
+- 2nd Loop
+exp=10
+
+count
+0 0
+1 2
+2 1
+
+count (prefix sum)
+0 0
+1 2
+2 3
+
+output = [11, 12, 21]
+
+
+
+Time:  O(d(N+k))
+  - d: digits
+  - N: length of A array
+  - k: length of count array
+Space: O(N)
+ */
 public class RadixSort {
 
     public void sort(int[] A) {

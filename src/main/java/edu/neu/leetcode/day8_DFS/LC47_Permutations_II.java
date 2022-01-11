@@ -15,11 +15,11 @@ public class LC47_Permutations_II {
         - if cur number is used,
             then skip it
         - if pre duplicate number is NOT used, => it's a horizontal duplicate case
-            then skip it
+            then SKIP it
             e.g. (1) skip second [1]
                  (2) skip second [2,1]
         - if pre duplicate number is used, => it's a vertical duplicate case
-            then use it
+            then USE it
             e.g.  []
                  /  ...
                [1]  ...    pre is used
@@ -47,8 +47,8 @@ public class LC47_Permutations_II {
             return res;
         }
 
-        private void dfs(List<List<Integer>> res, List<Integer> level, int[] nums, boolean[] used) {
-            if (level.size() == nums.length) res.add(new ArrayList<>(level));
+        private void dfs(List<List<Integer>> res, List<Integer> path, int[] nums, boolean[] used) {
+            if (path.size() == nums.length) res.add(new ArrayList<>(path));
             else {
                 for (int i = 0; i < nums.length; i++) {
                     // used[i] : cur number is used
@@ -56,10 +56,10 @@ public class LC47_Permutations_II {
                     //   : if pre duplicate number is NOT used, => it's a horizontal duplicate case
                     if (used[i] || (i > 0 && nums[i] == nums[i - 1] && !used[i - 1])) continue;
                     used[i] = true;
-                    level.add(nums[i]);
-                    dfs(res, level, nums, used);
+                    path.add(nums[i]);
+                    dfs(res, path, nums, used);
                     used[i] = false;
-                    level.remove(level.size() - 1);
+                    path.remove(path.size() - 1);
                 }
             }
         }

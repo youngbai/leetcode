@@ -9,7 +9,7 @@ Backtracking Template:
     for candidate in candidates:
         # try this partial candidate solution
         path.add(candidate)
-        # DFS: given this candidate, explore further
+        # DFS: based on this candidate, explore further
         backtracking(path, candidates)
         # backtrack
         path.remove(candidate)

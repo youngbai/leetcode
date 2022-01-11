@@ -34,14 +34,14 @@ public class LC90_Subsets_II {
             backtracking(res, new ArrayList<Integer>(), nums, 0);
             return res;
         }
-        private void backtracking(List<List<Integer>> res, List<Integer> level, int[] nums, int start) {
-            res.add(new ArrayList<Integer>(level));
+        private void backtracking(List<List<Integer>> res, List<Integer> path, int[] nums, int start) {
+            res.add(new ArrayList<Integer>(path));
             for (int i = start; i < nums.length; i++) {
                 // if repeated number, ignore them
                 if (i > start && nums[i - 1] == nums[i]) continue;
-                level.add(nums[i]);
-                backtracking(res, level, nums, i + 1);
-                level.remove(level.size() - 1);
+                path.add(nums[i]);
+                backtracking(res, path, nums, i + 1);
+                path.remove(path.size() - 1);
             }
         }
     }

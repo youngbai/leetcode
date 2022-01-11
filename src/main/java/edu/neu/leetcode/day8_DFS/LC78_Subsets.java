@@ -24,10 +24,10 @@ Intuition: consider Nth element, combine it with previous solutions
     class Solution1 {
         public List<List<Integer>> subsets(int[] nums) {
             List<List<Integer>> res = new ArrayList<>();
-            res.add(new ArrayList<Integer>());
+            res.add(new ArrayList<Integer>());      // empty result []
 
             for (int num : nums) {                  // O(N)
-                List<List<Integer>> temp = new ArrayList<>();
+                List<List<Integer>> temp = new ArrayList<>(); // temp: store new combination result
                 for (List<Integer> cur : res) {     // O(2^0)-O(2^N)
                     // List<Integer> newCombine = new ArrayList(cur);
                     // newCombine.add(num);
@@ -95,12 +95,12 @@ Intuition: consider Nth element, combine it with previous solutions
             backtracking(res, new ArrayList<Integer>(), nums, 0);
             return res;
         }
-        private void backtracking(List<List<Integer>> res, List<Integer> level, int[] nums, int start) {
-            res.add(new ArrayList<Integer>(level));   // save previous layer result by copying
-            for (int i = start; i < nums.length; i++) {
-                level.add(nums[i]); // add element based on previous layer result
-                backtracking(res, level, nums, i + 1); // DFS next layer
-                level.remove(level.size() - 1); // revert previous try, so that can continue next try
+        private void backtracking(List<List<Integer>> res, List<Integer> path, int[] nums, int start) {
+            res.add(new ArrayList<Integer>(path));   // save previous path result by copying
+            for (int i = start; i < nums.length; i++) { // try different candidates
+                path.add(nums[i]); // add element based on previous path result
+                backtracking(res, path, nums, i + 1); // DFS on next candidate
+                path.remove(path.size() - 1); // revert previous try, so that can continue next try
             }
         }
     }

@@ -21,7 +21,7 @@ public class LC209_Minimum_Size_Subarray_Sum {
     312     6   shrink left
     3124    10  C               4
     124     7   C shrink left   3
-    24      6
+    24      6   shrink left
     243     9   C               3
     43      7   C shrink left   2
 
