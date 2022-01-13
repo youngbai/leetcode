@@ -11,7 +11,14 @@ public class LC46_Permutations {
     - Backtracking DFS
     - LinkedHashSet, contains(), remove(), LinkedHashSet can save the insertion order
 
-    Time: O(N!)
+    Example: tree, dfs, backtracking
+        []
+     1   2   3
+    2 3 1 3 1 2
+    3 2 3 1 2 1
+
+    Time:  O(N!)
+    Space: O(N), memory stack, height of tree
      */
     class Solution1 {
         public List<List<Integer>> permute(int[] nums) {
@@ -28,7 +35,7 @@ public class LC46_Permutations {
                     if (path.contains(nums[i])) continue;
                     path.add(nums[i]);
                     dfs(res, path, nums);
-                    path.remove(nums[i]);
+                    path.remove(nums[i]); // Caution: it is Set not List, so should not use `path.remove(path.size() - 1)`
                 }
             }
         }
