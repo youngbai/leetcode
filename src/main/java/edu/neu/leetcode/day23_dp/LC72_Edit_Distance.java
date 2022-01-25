@@ -1,4 +1,4 @@
-package edu.neu.leetcode.dp;
+package edu.neu.leetcode.day23_dp;
 
 import java.util.Arrays;
 

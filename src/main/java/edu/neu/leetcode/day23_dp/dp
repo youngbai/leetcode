@@ -1,0 +1,8 @@
+什么时候用dp？
+In general, 当你发现大问题的解可以用小问题的解拼凑而成的时候。
+
+套路：当你被问到：Max/min area, max/min amount, max/min length, total number/combinations of sth, can or cannot,
+consider dynamic programming, i.e. max/min area, max/min amount, max/min length, total number of sth, can or cannot
+for smaller problem size K < N and see if these solutions can be logically combined into final solution for problem
+size K = N
+
