@@ -39,26 +39,32 @@ public class LC505_The_Maze_II {
     n - the number of columns of the maze.
     Time: O(m * n * max(m,n))
         - O(m * n) Complete traversal of maze will be done in the worst case.
-        - O(max(m,n)) for every current node chosen, we can travel upto
+        - O(max(m,n)) for every current node chosen, we can travel up to
             a maximum depth of max(m,n) in any direction.
     Space: O(mn)
         - O(mn) queue size can grow upto m∗n in the worst case.
         - O(mn) distance array of size m*nm∗n is used.
      */
-    class Solution1 {
+    class Solution1_BFS {
 
         int[][] dirs = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+            // init distance array
             int[][] distance = new int[maze.length][maze[0].length];
-            for (int[] row: distance)
-                Arrays.fill(row, Integer.MAX_VALUE);
+            for (int[] row: distance) Arrays.fill(row, Integer.MAX_VALUE);
+
+            // begin with start position
             distance[start[0]][start[1]] = 0;
-            Queue<int[]> q = new LinkedList<>();
+            Queue<int[]> q = new LinkedList<>();    // (x,y) position
             q.offer(start);
+
             while (!q.isEmpty()) {
+                // current position
                 int[] cur = q.poll();
+                // try 4 different directions
                 for (int[] dir : dirs) {
                     int x = cur[0], y = cur[1], count = 0;
+                    // keep going until hit the wall
                     while (x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && maze[x][y] == 0) {
                         x += dir[0];
                         y += dir[1];
@@ -68,7 +74,7 @@ public class LC505_The_Maze_II {
                     x -= dir[0];
                     y -= dir[1];
                     count--;
-                    // if current route is shorter than previous one
+                    // update distance of new position if current route is shorter than previous one
                     if (distance[cur[0]][cur[1]] + count < distance[x][y]) {
                         distance[x][y] = distance[cur[0]][cur[1]] + count;
                         q.offer(new int[]{x, y});
@@ -87,39 +93,43 @@ public class LC505_The_Maze_II {
     def shortestDistance(maze, start, destination):
         int[][] distance = {MAX.VALUE}
         distance(start) = 0
-        dfs(maze, start, destination, distance)
+        dfs(maze, start, distance)
         return distance(destination) == MAX? -1 : distance(destination)
 
-    def dfs(maze, start, destination, distance):
+    def dfs(maze, start, distance):
         for dir in dirs:
             start from start, go dir until hit the wall, get new position (x,y) with `count` steps
             if distance(start) + count < distance([x,y]):
                 distance([x,y]) = distance(start) + count
-                dfs(maze, (x,y), destination, distance)
+                dfs(maze, (x,y), distance)
 
     m - the number of rows of the maze.
     n - the number of columns of the maze.
     Time: O(m * n * max(m,n))
         - O(m * n) Complete traversal of maze will be done in the worst case.
-        - O(max(m,n)) for every current node chosen, we can travel upto
+        - O(max(m,n)) for every current node chosen, we can travel up to
             a maximum depth of max(m,n) in any direction.
     Space: O(mn)
         - O(mn) distance array of size m*nm∗n is used.
      */
-    class Solution2 {
+    class Solution2_DFS {
         int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+            // init distance array
             int[][] distance = new int[maze.length][maze[0].length];
-            for (int[] row : distance)
-                Arrays.fill(row, Integer.MAX_VALUE);
+            for (int[] row : distance) Arrays.fill(row, Integer.MAX_VALUE);
             distance[start[0]][start[1]] = 0;
-            dfs(maze, start, destination, distance);
+
+            // begin with start position
+            dfs(maze, start, distance);
             return distance[destination[0]][destination[1]] == Integer.MAX_VALUE? -1 : distance[destination[0]][destination[1]];
         }
 
-        private void dfs(int[][] maze, int[] start, int[] destination, int[][] distance) {
+        private void dfs(int[][] maze, int[] start, int[][] distance) {
+            // try 4 different directions
             for (int[] dir : dirs) {
                 int x = start[0], y = start[1], count = 0;
+                // keep going until hit the wall
                 while (x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && maze[x][y] == 0) {
                     x += dir[0];
                     y += dir[1];
@@ -129,9 +139,11 @@ public class LC505_The_Maze_II {
                 x -= dir[0];
                 y -= dir[1];
                 count--;
+                // update distance of new position if current route is shorter than previous one
+                // keep dfs if a shorter path is found
                 if (distance[start[0]][start[1]] + count < distance[x][y]) {
                     distance[x][y] = distance[start[0]][start[1]] + count;
-                    dfs(maze, new int[]{x, y}, destination, distance);
+                    dfs(maze, new int[]{x, y}, distance);
                 }
             }
         }
@@ -139,13 +151,13 @@ public class LC505_The_Maze_II {
 
     /*
     Thinking:
-    - use Dijkstra Algorithm to walk through all possible path, and compute the shorted distance from start
+    - use Dijkstra Algorithm to walk through all possible path, and compute the shorted distance from start vertex
     - but have to traverse every cell in the maze to find the vertex of min distance from unvisited vertex set.
       Optimization: use PQ
 
     Algo:
     main():
-        # init distance, visited
+        # init distance, visited array
         distance(all vertices) = MAX.VALUE
         distance(start) = 0
         visited(all vertices) = false
@@ -163,13 +175,14 @@ public class LC505_The_Maze_II {
                     distance(neighbor) = distance(u) + weight(u, neighbor)
 
      */
-    class Solution3 {
+    class Solution3_Dijkstra_No_PQ {
         public int shortestDistance(int[][] maze, int[] start, int[] dest) {
             int[][] distance = new int[maze.length][maze[0].length];
-            for (int[] row : distance)
-                Arrays.fill(row, Integer.MAX_VALUE);
+            for (int[] row : distance) Arrays.fill(row, Integer.MAX_VALUE);
+
             distance[start[0]][start[1]] = 0;
             boolean[][] visited = new boolean[maze.length][maze[0].length];
+
             dijkstra(maze, distance, visited);
             return distance[dest[0]][dest[1]] == Integer.MAX_VALUE? -1 : distance[dest[0]][dest[1]];
         }
@@ -220,7 +233,7 @@ public class LC505_The_Maze_II {
     /*
     Thinking:
     - use Dijkstra Algorithm to walk through all possible path, and compute the shorted distance from start
-    - use PQ to easily find the vertex of min distance from unvisited vertex set
+    - use PQ to easily find the nearest vertex that has min distance from unvisited vertex set
 
     Algo:
     main():
@@ -244,10 +257,11 @@ public class LC505_The_Maze_II {
                     distance(neighbor) = distance(u) + weight(u, neighbor)
                     pq.offer([neighbor.x, neighbor.y, distance(neighbor)])
      */
-    class Solution4 {
+    class Solution4_Dijkstra_PQ {
         public int shortestDistance(int[][] maze, int[] start, int[] dest) {
             int[][] distance = new int[maze.length][maze[0].length];
             for (int[] row : distance) Arrays.fill(row, Integer.MAX_VALUE);
+
             distance[start[0]][start[1]] = 0;
             dijkstra(maze, start, distance);
             return distance[dest[0]][dest[1]] == Integer.MAX_VALUE? -1 : distance[dest[0]][dest[1]];
@@ -256,10 +270,10 @@ public class LC505_The_Maze_II {
         public void dijkstra(int[][] maze, int[] start, int[][] distance) {
             int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
             PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[2] - b[2]);
-            pq.offer(new int[]{start[0], start[1], 0});
+            pq.offer(new int[]{start[0], start[1], 0}); // x,y,cost
             while (!pq.isEmpty()) {
                 int[] cur = pq.poll();
-                if (distance[cur[0]][cur[1]] < cur[2]) continue;
+                //if (distance[cur[0]][cur[1]] < cur[2]) continue;
                 for (int[] dir : dirs) {
                     int x = cur[0], y = cur[1], count = 0;
                     while (x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && maze[x][y] == 0) {

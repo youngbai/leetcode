@@ -10,6 +10,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class OA_Uber_HashMap_IncrKeyValue {
 
     /*
+    Question:
+    I was asked this question recently on uber online assessment.
+    1. Implement Increment function for all values in hashmap
+    2. Implement Increment function for all keys in hashmap
+
+    First task is easy.
+        a) get a keyset
+        b) for every key in key set, increment its value
+
+    Second task is not so trivial.
+    For every key, keep checking if there is key which is equal to key +1 and keep going until there is no key which is equal to key + 1. increment all the keys in reverse order.
+
     Formulas:
     1. map.key + keyInc = myHashMap.key
     2. map.value + valueInc = myHashMap.value

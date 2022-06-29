@@ -20,7 +20,7 @@ public class LC895_Max_Frequency_Stack {
     - push(x): O(logn)
         Freq = map.get(x)
         Freq++
-        PQ.offer((x, Freq, InsertSequence))
+        PQ.offer((x, Freq, InsertSequence++))
 
     - poll(): O(logn)
         x = PQ.peek()[0]
@@ -91,7 +91,7 @@ public class LC895_Max_Frequency_Stack {
     - push(x): O(1)
         freq = map.getOrDefault(x, 0) + 1
         map.put(x, freq)
-        stack = freqToElemMap.getOrNewIfNull(freq)
+        stack = freqToElemMap.computeIfAbsent(freq, v->new Stack())
         stack.push(x)
         maxFreq = max(freq, maxFreq)
 

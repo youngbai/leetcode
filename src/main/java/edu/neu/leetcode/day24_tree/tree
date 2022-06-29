@@ -1,0 +1,7 @@
+Tree -> BFS, DFS, recursion
+
+corner case: root == null
+base case:
+ - root == null
+ - stack.isEmpty()
+ - q.isEmpty()

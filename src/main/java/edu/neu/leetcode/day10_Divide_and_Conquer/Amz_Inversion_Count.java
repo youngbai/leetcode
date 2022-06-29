@@ -37,9 +37,10 @@ public class Amz_Inversion_Count {
     - conquer is like sort
 
     Conquer
-    - [...a...] [...b...]
+    -    left      right     Both left,right are ordered
+      [...a...] [...b...]
     - if a > b, then numbers following a is also > b, they also count for inversion count
-        then count it, and move `b` forward, `a` stay
+      then count it, and move `b` forward, `a` stay
     - if a <= b, then no inversion, move `a` forward, `b` stay
 
     Time:  O(nlogn), like mergesort
@@ -51,7 +52,7 @@ public class Amz_Inversion_Count {
         }
 
         public int mergeSortAndCount(int[] arr, int l, int r) {
-            // terminal case
+            // base case
             if (l >= r) return 0;
 
             // divide
@@ -67,7 +68,7 @@ public class Amz_Inversion_Count {
 
         public int mergeAndCount(int[] arr, int l, int m, int r) {
 
-            int[] left = Arrays.copyOfRange(arr, l, m + 1);
+            int[] left = Arrays.copyOfRange(arr, l, m + 1);      // NOTE: Arrays.copyOfRange(array, from, to)
             int[] right = Arrays.copyOfRange(arr, m + 1, r + 1);
 
             int i = 0, j = 0, k = l, count = 0;

@@ -24,7 +24,7 @@ public class LC46_Permutations {
         public List<List<Integer>> permute(int[] nums) {
             List<List<Integer>> res = new ArrayList<>();
             // Arrays.sort(nums);   // Don't need sort
-            dfs(res, new LinkedHashSet<Integer>(), nums);
+            dfs(res, new LinkedHashSet<Integer>(), nums);       // NOTE: LinkedHashSet
             return res;
         }
         private void dfs(List<List<Integer>> res, LinkedHashSet<Integer> path, int[] nums) {

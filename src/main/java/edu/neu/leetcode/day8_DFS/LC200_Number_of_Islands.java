@@ -32,5 +32,24 @@ public class LC200_Number_of_Islands {
                 dfs(grid, x, y);
             }
         }
+
+        // alternative implementation of dfs()
+        private void dfs1(char[][] grid, int i, int j) {
+            // if i, j out of boundaries, return
+            int M = grid.length, N = grid[0].length;
+            if (i < 0 || i >= M || j < 0 || j >= N) return;
+
+            // if it is water, return
+            if (grid[i][j] == '0') return;
+
+            // set i,j visited
+            grid[i][j] = '0';
+
+            // try 4 directions
+            dfs(grid, i + 1, j);
+            dfs(grid, i - 1, j);
+            dfs(grid, i, j - 1);
+            dfs(grid, i, j + 1);
+        }
     }
 }

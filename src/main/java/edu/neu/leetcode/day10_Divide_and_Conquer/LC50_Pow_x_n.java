@@ -9,7 +9,7 @@ public class LC50_Pow_x_n {
     Algo:
     - n = 0, return 1
     - n > 0:
-        if n is even, x^n = (x^2)^(n/2)
+        if n is even, x^n = (x^2)^(n/2) = (x*x)^(n/2)
         if n is odd, x^n = x * x^(n-1), then x^(n-1) is back to even situation
     - n < 0:
         x^n = (1/x)^(-n)  // but -n can cause overflow

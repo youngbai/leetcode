@@ -25,8 +25,8 @@ public class LC410_Split_Array_Largest_Sum {
      */
     class Solution1 {
         public int splitArray(int[] nums, int m) {
-            int sum = Arrays.stream(nums).sum();
-            int max = Arrays.stream(nums).max().getAsInt();
+            int sum = Arrays.stream(nums).sum();            // O(N)  NOTES: Arrays.stream(int[]{..}).sum()
+            int max = Arrays.stream(nums).max().getAsInt(); // O(N)  NOTES: .max().getAsInt()
             return binary(nums, m, max, sum);
         }
 
@@ -35,7 +35,7 @@ public class LC410_Split_Array_Largest_Sum {
                 int mid = low + (high - low) / 2;
                 if (valid(nums, m, mid)) high = mid - 1;
                 else low = mid + 1;
-            }
+            } // high(can NOT split to m arrays), low(can split to m arrays)
             return low;
         }
 

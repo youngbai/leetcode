@@ -27,16 +27,19 @@ public class LC211_AddSearchWords {
 
         // see if word[pos] is in node.children
         public boolean helper(String word, int pos, TrieNode node) {
+            // base case
             if (pos == word.length()) return node.isWord;
+
             char c = word.charAt(pos);
             if (c != '.') {
                 if (node.children[c - 'a'] == null) return false;
                 return helper(word, pos + 1, node.children[c - 'a']);
             } else {
+                // try 26 candidates
                 for (int i = 0; i < 26; i++)
                     if (node.children[i] != null && helper(word, pos + 1, node.children[i]))
-                        return true;
-                return false;
+                        return true; // if found it, return true, otherwise try other candidates
+                return false;   // all candidate do not work, return false
             }
         }
     }

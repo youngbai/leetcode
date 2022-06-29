@@ -4,6 +4,26 @@ import edu.neu.leetcode.commonbean.ListNode;
 
 public class LC83_Remove_Duplicates_from_Sorted_List {
 
+    /*
+    Iteration
+    pre cur next
+     */
+    class Solution1_0 {
+        public ListNode deleteDuplicates(ListNode head) {
+            ListNode dummy = new ListNode(Integer.MIN_VALUE, head), pre = dummy, cur = head;
+            while (cur != null) {
+                ListNode next = cur.next;
+                if (pre.val == cur.val) {
+                    pre.next = next;
+                    cur = next;
+                } else {
+                    pre = cur;
+                    cur = next;
+                }
+            }
+            return dummy.next;
+        }
+    }
 
     /*
     Iteration

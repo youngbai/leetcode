@@ -10,7 +10,7 @@ public class LC128_Longest_Consecutive_Sequence {
     /*
     Disjoint Set
     Thinking:
-    1.different disjoint set -> Disjoint Set
+    1.a consecutive elements form a disjoint set -> Disjoint Set Data Structure
     2.our goal is find the max size of Disjoint Set, so DSU needs size[]
     3.for each element in nums, we need to check if nums[i]+1, nums[i]-1 exist,
         if exist, we union their indexes, DSU.union(nums[i].index, (nums[i]+1).index)
@@ -19,12 +19,13 @@ public class LC128_Longest_Consecutive_Sequence {
     5.final answer is the max size of size[],
       the root contains the max size
      */
-    class Solution1 {
+    class Solution1_DSU {
         public int longestConsecutive(int[] nums) {
             DSU dsu = new DSU(nums.length);
+            //      number   index
             HashMap<Integer, Integer> map = new HashMap<>();
             for (int i = 0; i < nums.length; i++) {
-                if (map.containsKey(nums[i])) continue;
+                if (map.containsKey(nums[i])) continue; // prevent duplicate number
                 map.put(nums[i], i);
                 if (map.containsKey(nums[i] + 1)) dsu.union(i, map.get(nums[i] + 1));
                 if (map.containsKey(nums[i] - 1)) dsu.union(i, map.get(nums[i] - 1));
@@ -82,7 +83,7 @@ public class LC128_Longest_Consecutive_Sequence {
     In short, check each num to find the head of a consecutive sequence, then search for its
     tail until fail, then we got the size of the sequence.
      */
-    class Solution2 {
+    class Solution2_HashSet {
         public int longestConsecutive(int[] nums) {
             Set<Integer> set = new HashSet<>();
             for (int n : nums) set.add(n);  // O(n)

@@ -110,6 +110,7 @@ public class LC155_MinStack {
 
     /**
      * One Stack
+     * [[current element, min element], [12,12], [30, 12], [7,7], ... ]
      */
     class MinStack2 {
 

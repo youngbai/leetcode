@@ -98,7 +98,7 @@ public class LC51_N_Queens {
         private List<String> construct(char[][] board) {
             List<String> res = new ArrayList<>();
             for (char[] row : board)
-                res.add(new String(row));
+                res.add(new String(row));           // Note: new String(char[])
             return res;
         }
     }

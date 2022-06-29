@@ -15,8 +15,10 @@ public class LC974_Subarray_Sums_Divisible_by_K {
      */
     class Solution1_PrefixSum {
         public int subarraysDivByK(int[] nums, int k) {
+            // prefix sum
             Map<Integer, Integer> map = new HashMap<>(); // map(remainder, frequency)
             map.put(0, 1);
+
             int prefix = 0, res = 0;
             for (int n : nums) {    // O(N)
                 prefix = (prefix + n % k + k) % k;  // guarantee the remainder is non-negative

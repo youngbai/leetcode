@@ -26,13 +26,16 @@ public class LC426_BST_to_Sorted_Doubly_Linked_List {
 
     /*
     Thinking:
-    - inorder traverse the BST, Left->Node->Right
+    - inorder traverse the BST, Left->Root->Right
     - iteration
      */
     class Solution1 {
 
         public Node treeToDoublyList(Node root) {
+            // base case
             if (root == null) return null;
+
+            // inorder
             Node first = null, pre = null;
             Deque<Node> stack = new ArrayDeque<>();
             while (root != null || !stack.isEmpty()) {
@@ -48,7 +51,9 @@ public class LC426_BST_to_Sorted_Doubly_Linked_List {
                 }
                 pre = root;
                 root = root.right;
-            }
+            }   // in the end, pre will be the last element, root will be null
+
+            // connect first element and last element
             first.left = pre;
             pre.right = first;
             return first;
@@ -61,7 +66,7 @@ public class LC426_BST_to_Sorted_Doubly_Linked_List {
     - recursion
      */
     class Solution2 {
-        Node pre = null, head = null;
+        Node head = null, pre = null;
         public Node treeToDoublyList(Node root) {
             if (root == null) return null;
             inorderTraverse(root);
@@ -72,12 +77,15 @@ public class LC426_BST_to_Sorted_Doubly_Linked_List {
         private void inorderTraverse(Node root) {
             if (root == null) return;
             inorderTraverse(root.left);     // left
-            if (head == null) head = root;  // root
-            if (pre != null) {
+
+            if (head == null) head = root;  // find head
+
+            if (pre != null) {              // root
                 pre.right = root;
                 root.left = pre;
             }
             pre = root;
+
             inorderTraverse(root.right);    // right
         }
     }

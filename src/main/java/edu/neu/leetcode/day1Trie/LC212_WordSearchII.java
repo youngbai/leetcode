@@ -103,9 +103,11 @@ public class LC212_WordSearchII {
         }
 
         public void dfs(char[][] board, int i, int j, TrieNode node) {
+            // out of boundaries
             if (i < 0 || i >= M || j < 0 || j >= N) return;
-            char c = board[i][j];
+
             // visited || not found, return
+            char c = board[i][j];
             if (c == '#' || node.children[c - 'a'] == null) return;
 
             // found this char
@@ -115,7 +117,8 @@ public class LC212_WordSearchII {
                 res.add(node.word);
                 node.word = null;   // de-duplicate
             }
-            // continue finding
+
+            // try 4 directions and keep looking
             board[i][j] = '#';
             dfs(board, i + 1, j, node);
             dfs(board, i - 1, j, node);

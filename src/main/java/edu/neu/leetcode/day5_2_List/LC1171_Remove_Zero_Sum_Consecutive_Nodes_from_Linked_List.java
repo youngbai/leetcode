@@ -19,7 +19,7 @@ public class LC1171_Remove_Zero_Sum_Consecutive_Nodes_from_Linked_List {
     - section3: unchecked elements
     So, prefix(n1) equals to prefix(n2), because sum(section2) is 0.
     How to get the hat of section2? (hat.next is head)
-    - maintain a map(prefix, node)
+    - maintain a map(prefix, hat node)
     - map.get(prefix of n2) is the hat which is n1
 
     Ref: https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/discuss/366319/JavaC%2B%2BPython-Greedily-Skip-with-HashMap

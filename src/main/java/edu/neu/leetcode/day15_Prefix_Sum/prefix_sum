@@ -1,0 +1,105 @@
+
+P1
+
+Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
+
+Return the running sum of nums.
+
+Input: nums = [1,2,3,4],Output: [1,3,6,10]
+
+Input: nums = [3,1,2,10,1], Output: [3,4,6,16,17]
+
+int n = nums.length();
+int prefix[n]
+prefix1[0] = nums[0];
+for (int i = 1; i < n; ++i){
+	prefix[i] = prefix[i-1] + nums[i];
+}
+def solution(nums):	[1]
+	if not nums:
+		return []
+	prefix = [0 for _ in range(len(nums))]		[1]
+	prefix[0] = nums[0]
+	for i in range(1, len(nums)):		[1, 1)		empty range
+		prefix[i] = prefix[i - 1] + nums[i]
+	return prefix
+
+P2
+
+Given an integer array nums, handle multiple queries of the following type:
+Calculate the sum of the elements of nums between indices left and right inclusive where left <= right.
+nums =           [-2, 0, 3, -5, 2, -1]l
+prefixsum =  [-2, -2, 1, -4. -2. -3]
+if l == 0:
+return prefix[r] - 0              ^       ^
+prefix[r] - prefix[l-1]
+
+class Solution:
+	def __init__(self, nums):
+		self.prefix = [0 for _ in range(len(nums))]
+		self.prefix[0] = nums[0]
+		for i in range(1, len(nums)):
+			self.prefix[i] = self.prefix[i - 1] + nums[i]
+	def query(self, left, right):
+		if left == 0:		# padding zero
+			return self.prefix[right]		[0, right]
+		return self.prefix[right] - self.prefix[left - 1]
+
+
+
+queries:
+[0, 2]	-> 1
+[2, 5]-> -1
+[0, 5]-> -3
+
+prefix[right] - prefix[left]
+
+
+P3
+
+Given an array of integers nums and an integer Target, return if there exists a subarray whose sum equals to Target.
+A subarray is a contiguous non-empty sequence of elements within an array.
+Input: nums = [1,2,3,4], Target = 9 or 10 Output: True
+Input: nums = [1,2,3,4], Target = 8 Output: False
+
+def solution(nums, target):
+prefix_set = set([0])
+prefix_sum = 0
+for num in nums:
+	preifx_sum += num
+	if prefix_sum - target in prefix_set:
+		return True
+		prefix_set.add(prefix_set)
+return False
+
+
+def solution(nums, target):
+prefix_map = {}		# preifx -> count
+prefix_map[0] = 1
+prefix_sum = 0
+result = 0
+	for index in range(len(nums)):
+		preifx_sum += nums[index]
+		if prefix_sum - target in prefix_map:		# map -> count
+			result += prefix_map[prefix_sum - target]
+prefix_map[prefix_sum] += 1
+	return result
+Follow Up:
+ return the maximum size of a subarray whose sum equals to Target.
+Input: nums = [1,-1,5,-2,1,2], Target = 3 Output: 4
+
+ return the minimum size of a subarray whose sum equals to Target.
+Input: nums = [1,-1,5,-2,1,2], Target = 3 Output: 2
+
+ return the total number of subarrays whose sum equals to Target.
+Input: nums = [1,-1,5,-2,1,2], Target = 3 Output: 4
+
+
+P4
+
+Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1.
+Input: nums = [1,1,1,0,1,0,0,1,1,0,1,1,1], Output: 8
+
+	        [1,1,1,-1,1,-1,-1,1,1,-1,1,1,1]		target = 0
+
+

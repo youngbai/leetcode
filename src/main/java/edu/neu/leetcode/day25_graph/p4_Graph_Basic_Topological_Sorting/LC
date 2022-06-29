@@ -1,0 +1,11 @@
+207,210,269
+Topological Sort
+- BFS
+- DFS(three color) to detect a cycle
+    - 0: unvisited
+    - 1: in process
+    - 2: visited
+
+All:
+Time: O(E + V)
+Space: O(E)

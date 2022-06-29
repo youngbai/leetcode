@@ -13,9 +13,48 @@ public class LC127_Word_Ladder {
     Time:  O(M^2 * N)
         - traverse all words in wordlist, O(N)
         - neighbors() O(M^2)
+        - M is the length of each word
+        - N is the total number of words in the input word list
     Space: O(M * N), Set words
      */
-    class Solution1 {
+    class Solution1_0 {
+        public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+            Set<String> set = new HashSet<>(wordList);      // NOTE: list to set
+            Queue<String> q = new LinkedList<>();
+
+            set.remove(beginWord);  // visit source vertex
+            q.offer(beginWord);     // offer source vertex to q
+
+            int step = 1, N = beginWord.length();
+            while (!q.isEmpty()) {
+                // traverse this level
+                int size = q.size();
+                for (int i = 0; i < size; i++) {
+                    String cur = q.poll();
+                    if (cur.equals(endWord)) return step;
+
+                    // offer its unvisited neighbors to Queue
+                    for (int j = 0; j < N; j++) {
+                        for (char letter = 'a'; letter <= 'z'; letter++) {
+                            StringBuilder next = new StringBuilder(cur);    // NOTE: String -> StringBuilder, and setCharAt(index, char)
+                            next.setCharAt(j, letter);                      // NOTE: setCharAt()
+                            String nextWord = next.toString();              // NOTE: StringBuilder -> String
+                            if (set.contains(nextWord)) {
+                                if (nextWord.equals(endWord)) return step + 1;
+                                set.remove(nextWord);   // visit(neighbor)
+                                q.offer(nextWord);      // offer neighbor to Queue
+                            }
+                        }
+                    }
+                }
+                step++;
+            }
+            return 0;
+        }
+    }
+
+    // same as Solution1_0
+    class Solution1_1 {
         public int ladderLength(String beginWord, String endWord, List<String> wordList) {
             Set<String> words = new HashSet<>(wordList); // is used to avoid repeated access to same word
             Queue<String> q = new LinkedList<>();
@@ -26,9 +65,9 @@ public class LC127_Word_Ladder {
                 int size = q.size();
                 level++;
                 for (int i = 0; i < size; i++) { // traverse this level
-                    String word = q.poll();
-                    if (word.equals(endWord)) return level;
-                    for (String neigh : neighbors(word)) {
+                    String cur = q.poll();
+                    if (cur.equals(endWord)) return level;
+                    for (String neigh : neighbors(cur)) {
                         if (words.contains(neigh)) {
                             words.remove(neigh);
                             q.offer(neigh);

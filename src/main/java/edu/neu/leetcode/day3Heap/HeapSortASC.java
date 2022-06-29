@@ -11,17 +11,16 @@ public class HeapSortASC {
     public void sort(int[] A) {
         int N = A.length;
 
-        // build max heap
+        // 1.build max heap
         for (int i = N / 2; i >= 0; i--) {
             heapify(A, N, i);
         }
 
-        // sort down
+        // 2.swap root(0) and last element(i=N-1, i--), heapify on root
         for (int i = N - 1; i > 0; i--) {
             // exchange root (which is 0) and last element (which is i)
-            int temp = A[0];
-            A[0] = A[i];
-            A[i] = temp;
+            swap(A, 0, i);
+            // heapify on 0
             heapify(A, i, 0);
         }
     }
@@ -37,11 +36,15 @@ public class HeapSortASC {
         if (r < N && A[r] > A[max]) max = r;
         if (max != i) {
             // exchange element in i and max
-            int temp = A[i];
-            A[i] = A[max];
-            A[max] = temp;
+            swap(A, i, max);
             heapify(A, N, max);
         }
+    }
+
+    private void swap(int[] A, int i, int j) {
+        int temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
     }
 
     public static boolean isSorted(int[] A) {

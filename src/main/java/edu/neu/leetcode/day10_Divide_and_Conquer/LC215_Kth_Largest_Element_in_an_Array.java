@@ -59,8 +59,8 @@ public class LC215_Kth_Largest_Element_in_an_Array {
         // like quick sort, choose hi as pivot, and let all nums on the left of pivot is < pivot, all nums on the right is >= pivot
         private int partition(int[] nums, int lo, int hi) {
             int pivot = nums[hi];
-            int i = lo;
-            for (int j = lo; j < hi; j++) {
+            int i = lo;  // i : first element > pivot
+            for (int j = lo; j < hi; j++) {  // j : next unchecked number
                 if (nums[j] < pivot) {
                     swap(nums, i, j);
                     i++;

@@ -9,8 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LC305_NumOfIslandsII {
 
-    // Each island is a joint set
-    // try to connect disjoint set
+    /*
+    Thinking:
+    - Each island is a joint set
+    - try to connect disjoint set
+    - Graph disjoint component
+
+    Summary:
+    - Graph -> BFS, DFS -> visited(boolean[] or Set)
+    - join disjoint component, number of component in a graph -> DSU
+
+     */
     class Solution {
 
         int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};

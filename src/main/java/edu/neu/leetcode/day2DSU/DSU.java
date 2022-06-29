@@ -1,7 +1,7 @@
 package edu.neu.leetcode.day2DSU;
 
 /*
-Disjoint Set(Union Find)
+Disjoint Set Union(Union Find)
 
 Pseudocode:
 DSU:

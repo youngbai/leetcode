@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class Lintcode130_Heapify {
 
     /*
-    We don't have to do heapify for all node, because all leaves (nodes int the last layer) don't need heapify.
+    We don't have to do heapify for all node, because all leaves (nodes in the last layer) don't need heapify.
     We only need to do heapify from the penultimate layer. To be exact, from the last node with children, whose
-    index is A.length / 2;
+    index is A.length / 2
     E.g.
         0
      1    2
@@ -29,6 +29,7 @@ public class Lintcode130_Heapify {
     See youdao notes: day3_Heap
      */
     public static void buildHeap(int[] A) {
+        // start from n/2 until 0
         for (int i = A.length / 2; i >= 0; i--) {
             heapify(A, A.length, i);
         }
@@ -42,11 +43,11 @@ public class Lintcode130_Heapify {
         int l = 2 * i + 1;  // l is left
         int r = 2 * i + 2;  // r is right
 
-        if (l >= N && r >= N) return;
+        if (l >= N && r >= N) return;   // both left and right out of boundary
         if (l < N && A[l] < A[min]) min = l;
         if (r < N && A[r] < A[min]) min = r;
 
-        if (min != i) { // root is NOT the smallest number
+        if (min != i) { // if root is NOT the smallest number
             int swap = A[i];
             A[i] = A[min];
             A[min] = swap;

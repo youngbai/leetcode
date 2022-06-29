@@ -1,0 +1,50 @@
+# DFS recursion template
+def dfs(Graph g, vertex v, boolean[] visited)
+    # if v has been visited, return
+    visit(v)
+    for each neighbor u of v
+        if u is unvisited
+            dfs(g,  u, visited)
+
+# DFS iteration template
+def dfs()
+	stack, visited[]
+
+	push source vertex to stack
+	while stack is not empty
+		pop v from stack
+		if v visited, then continue
+
+		visit(v)
+		for each neighbor u of v
+			if u is unvisited
+				push u to stack
+
+# BFS recursion template
+def main()
+	Graph g, Queue q, visited[]
+	visit(source vertex)
+	q.offer(source vertex)
+	bfs(g, q, visited)
+
+def bfs(Graph g, Queue q, visited[])
+	if q is empty, return
+	v = q.poll()
+	for each neighbor u of v
+		if u is unvisited
+			visit(u)
+			q.offer(u)
+	bfs(g, q, visited)
+
+# BFS iteration template
+def bfs(Graph g)
+	Queue q, visited[]
+	visit(source vertex)
+	q.offer(source vertex)
+
+	while q is not empty
+		v = q.poll()
+		for each neighbor u of v
+			if u is unvisited
+				visit(u)
+				q.offer(u)

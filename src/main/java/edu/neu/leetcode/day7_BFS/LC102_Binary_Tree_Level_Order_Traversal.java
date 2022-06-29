@@ -12,7 +12,7 @@ public class LC102_Binary_Tree_Level_Order_Traversal {
 
     /*
     Thinking:
-    - BFS
+    - BFS, iteration
      */
     class Solution1 {
         public List<List<Integer>> levelOrder(TreeNode root) {

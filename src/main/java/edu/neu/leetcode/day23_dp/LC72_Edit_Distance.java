@@ -27,15 +27,15 @@ public class LC72_Edit_Distance {
     - too many repeated calculations
     md("horse", "hello")
         md("orse", "ello")
-            md("orse", "llo")
+            md("orse", "llo")           insert
                 md("orse", "lo")
                 md("rse", "llo") <-
                 md("rse", "lo")
-            md("rse", "ello")
+            md("rse", "ello")           delete
                 md("rse", "llo") <-
                 md("se", "ello")
                 md("se", "llo") <<-
-            md("rse", "llo")
+            md("rse", "llo")            replace
                 md("rse", "llo") <-
                 md("se", "llo") <<-
                 md("se", "lo")

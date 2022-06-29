@@ -27,7 +27,7 @@ public class LC198_House_Robber {
             int[] A = new int[N + 1];
             // base case
             A[1] = nums[0];
-            // transite function
+            // transition function
             for (int i = 2; i < N + 1; i++) {
                 A[i] = Math.max(A[i - 1], A[i - 2] + nums[i - 1]);
             }

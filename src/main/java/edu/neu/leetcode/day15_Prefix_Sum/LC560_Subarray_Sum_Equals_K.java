@@ -15,8 +15,12 @@ public class LC560_Subarray_Sum_Equals_K {
     class Solution1_PrefixSum {
         public int subarraySum(int[] nums, int k) {
             int N = nums.length, res = 0;
+
+            // prefix sum
             int[] ps = new int[N + 1];
             for (int i = 1; i <= N; i++) ps[i] = ps[i - 1] + nums[i - 1];
+
+            // brute force two sum
             for (int s = 0; s <= N; s++) {          // O(N)
                 for (int e = s + 1; e <= N; e++) {  // O(N)
                     if (ps[e] - ps[s] == k) res++;
@@ -39,9 +43,11 @@ public class LC560_Subarray_Sum_Equals_K {
      */
     class Solution2_PrefixSum_TwoSum {
         public int subarraySum(int[] nums, int k) {
+            // prefix sum using map
             Map<Integer, Integer> map = new HashMap<>();  // map(prefix_sum, frequency)
-            int sum = 0, res = 0;   // sum is prefix sum
             map.put(0, 1);
+
+            int sum = 0, res = 0;   // sum is prefix sum
             for (int n : nums) {    // O(N)
                 sum += n;
                 if (map.containsKey(sum - k)) res += map.get(sum - k);

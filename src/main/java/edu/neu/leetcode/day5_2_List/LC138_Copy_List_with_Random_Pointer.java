@@ -23,7 +23,7 @@ public class LC138_Copy_List_with_Random_Pointer {
     Time:  O(2n)
     Space: O(n) - map contains all nodes
      */
-    class Solution1 {
+    class Solution1_1 {
         public Node copyRandomList(Node head) {
             Map<Node, Node> map = new HashMap<>();
             for (Node cur = head; cur != null; cur = cur.next)
@@ -33,6 +33,35 @@ public class LC138_Copy_List_with_Random_Pointer {
                 map.get(cur).random = map.get(cur.random);
             }
             return map.get(head);
+        }
+    }
+
+    // same as Solution1_1, but more readable
+    class Solution1_2 {
+        public Node copyRandomList(Node head) {
+            // base case
+            if (head == null) return head;
+
+            //origin, new
+            Map<Node, Node> map = new HashMap<>();
+
+            // create new node, also save the mapping from original to new in map
+            Node dummy = new Node(0), tail = dummy;
+            for (Node cur = head; cur != null; cur = cur.next) {
+                tail.next = new Node(cur.val);
+                map.put(cur, tail.next);
+                tail = tail.next;
+            }
+
+            // deal with random pointer
+            for (Node cur = head; cur != null; cur = cur.next) {
+                Node random = cur.random;
+                Node newRandom = map.get(random);
+                Node newNode = map.get(cur);
+                newNode.random = newRandom;
+            }
+
+            return dummy.next;
         }
     }
 

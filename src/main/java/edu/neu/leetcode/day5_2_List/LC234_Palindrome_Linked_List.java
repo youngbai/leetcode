@@ -16,8 +16,12 @@ public class LC234_Palindrome_Linked_List {
      */
     class Solution1 {
         public boolean isPalindrome(ListNode head) {
+            // base case
+            if (head == null) return true;
+
             ListNode firstHalfEnd = endOfFirstHalf(head);
             ListNode secondHalfStart = reverse(firstHalfEnd.next);
+
             ListNode p1 = head;
             ListNode p2 = secondHalfStart;
             boolean result = true;
@@ -26,6 +30,7 @@ public class LC234_Palindrome_Linked_List {
                 p1 = p1.next;
                 p2 = p2.next;
             }
+
             // restore the original list
             firstHalfEnd.next = reverse(secondHalfStart);
             return result;

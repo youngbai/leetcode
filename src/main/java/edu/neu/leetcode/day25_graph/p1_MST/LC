@@ -1,0 +1,54 @@
+1135,1168,1584
+
+# Graph
+
+# MST
+- Prim's algorithm
+    - Main idea: start from any point, keep picking up the nearest unvisited neighbors
+    - Graph, PQ/Naive, Visited Set
+    - PQ : O(ElogE), Adjacent List, best for Sparse Graph; If Dense Graph, then E=V^2, so O(V^2 logV)
+    - Naive : O(V^2), Adjacent Matrix, best for Dense Graph
+- Kruskal's algorithm
+    - Main idea: among all edges that do not create cycles, pick the edge with the least weight
+    - use DSU (Disjoint Set Union)
+    - O(ElogE), best for Sparse Graph
+- Summary
+    - Sparse Graph: Kruskal, Prim(PQ)
+    - Dense Graph: Prim(Naive)
+
+
+# Shortest Path
+- Dijkstra algorithm
+
+
+# pseudocode
+- Kruscal MST:
+sort edge
+traverse each edge(a,b):
+	if a, b are in the same set,
+		then continue
+	else
+		union(a,b)
+
+- Prim MST:
+1.Initialize the minimum spanning tree with a vertex chosen at random.
+2.Find all the edges that connect the tree to new vertices, find the minimum and add it to the tree
+3.Keep repeating step 2 until we get a minimum spanning tree
+
+- Prim MST:
+G
+visited Set
+offer a random vertex (1,1,0) to PQ
+while PQ is not empty:
+	x, y, cost = poll min edge from PQ
+	if y is not visited:
+		for neighbor of y:
+			if neighbor is not visited:
+				offer edge of y,neighbor,cost to PQ
+
+if visited size == number of vertex
+	then can form a MST
+else
+	then can not form a MST
+
+

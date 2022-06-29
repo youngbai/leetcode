@@ -17,11 +17,11 @@ public class LC232_ImplQueueUsingStack {
      s1: 2 1
      s2:
 
-     pop 1, 2 from s1 and push them into s2
+     (1) pop 1, 2 from s1 and push them into s2, then push 3 to s1
      s1: 3
      s2: 1 2
 
-     pop 2, 1 from s2 and push them into s1
+     (2) pop 2, 1 from s2 and push them into s1
      s1: 3 2 1
      s2:
 

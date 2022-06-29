@@ -10,17 +10,17 @@ parent:         i
 left child:  2 * i + 1
 right child: 2 * i + 2
 
-left or right child:    i
 parent             :  (i-1)/2
+left or right child:    i
 
 
-size -> up next empty position
+size -> index of next empty position
 
  */
 public class MinPQ {
 
     int[] pq;
-    int size;
+    int size;   // index of next empty position
 
     public MinPQ(int capacity) {
         pq = new int[capacity];
@@ -31,14 +31,14 @@ public class MinPQ {
     }
 
     public void offer(int num) {
-        pq[size] = num;     // add to the end
+        pq[size] = num;     // add num to the end
         shiftUp(size);      // shift up
         size++;             // size++
     }
 
     public Integer poll() {
         int value = pq[0];      // return root
-        pq[0] = pq[size - 1];   // put end to root
+        pq[0] = pq[size - 1];   // put last num to root
         size--;                 // size--
         if (size > 1) shiftDown(0); // shift down
         return value;

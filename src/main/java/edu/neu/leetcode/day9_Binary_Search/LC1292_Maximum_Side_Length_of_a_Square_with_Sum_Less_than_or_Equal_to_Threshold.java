@@ -21,6 +21,7 @@ public class LC1292_Maximum_Side_Length_of_a_Square_with_Sum_Less_than_or_Equal_
       - rangeSum (2D prefix sum)
       - use dp to cached all the result, later we can get the rangeSum only within O(1)
     - DP, prefix formula:
+      - mapping: dp(x,y) -- mat(x-1,y-1)
       - base: dp(0,y) = 0, dp(x,0) = 0
       - deduction: dp(x,y) = dp(x, y-1) + dp(x-1,y) - dp(x-1,y-1) + mat(x-1,y-1)
     - rangeSum(x1, y1, x2, y2) formula:
@@ -68,7 +69,7 @@ public class LC1292_Maximum_Side_Length_of_a_Square_with_Sum_Less_than_or_Equal_
             for (int x = 1; x <= m; x++)
                 for (int y = 1; y <= n; y++)
                     for (int k = 0; x + k <= m && y + k <= n; k++) {  // @Step1
-                        if (rangeSum(dp, x,y, x + k, y + k) > threshold) break; // pruning
+                        if (rangeSum(dp, x, y, x + k, y + k) > threshold) break; // pruning
                         else ans = Math.max(ans, k + 1);
                     }
             return ans;
@@ -114,7 +115,7 @@ public class LC1292_Maximum_Side_Length_of_a_Square_with_Sum_Less_than_or_Equal_
                         int mid = l + (h - l) / 2;
                         if (rangeSum(dp, x, y, x + mid, y + mid) > threshold) h = mid - 1;
                         else l = mid + 1;
-                    }
+                    } // h,l
                     ans = Math.max(ans, l);
                 }
             return ans;
@@ -154,7 +155,7 @@ public class LC1292_Maximum_Side_Length_of_a_Square_with_Sum_Less_than_or_Equal_
             int ans = 0;
             for (int x = 1; x <= m; x++)
                 for (int y = 1; y <= n; y++) {
-                    // boundary search
+                    // binary search
                     // l,h,m is the length to add
                     int l = ans, h = Math.min(m - x, n - y);
                     if (l > h) continue;

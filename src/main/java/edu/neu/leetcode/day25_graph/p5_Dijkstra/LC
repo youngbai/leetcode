@@ -1,0 +1,9 @@
+505,743,787,
+1631,1102,1514,1368
+
+Dijkstra
+- Graph: Adjacent List or Adjacent Matrix
+- int[] distance
+- int[] previous vertex
+- boolean[] visited
+- PQ

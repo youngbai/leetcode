@@ -80,7 +80,7 @@ public class LC287_Find_Duplicate_Number {
                 int mid = low + (high - low) / 2;
                 int cnt = 0;
                 for (int n : nums) if (n <= mid) cnt++; // traverse each element, O(n)
-                if (cnt <= mid) low = mid + 1;
+                if (cnt == mid) low = mid + 1;
                 else high = mid;
             }
             return low;
@@ -114,7 +114,7 @@ public class LC287_Find_Duplicate_Number {
                     return slow;
                 }
             }
-            return -1;
+            return -1;  // duplicate number does not exits
         }
     }
 

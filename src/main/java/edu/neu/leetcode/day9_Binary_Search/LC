@@ -1,0 +1,22 @@
+LC704_Binary_Search
+LC278_First_Bad_Version
+LC4_Median_of_Two_Sorted_Arrays
+LC410_Split_Array_Largest_Sum
+LC1283_Find_the_Smallest_Divisor_Given_a_Threshold
+LC1292_Maximum_Side_Length_of_a_Square_with_Sum_Less_than_or_Equal_to_Threshold
+LC1482_Minimum_Number_of_Days_to_Make_m_Bouquets
+LC1552_Magnetic_Force_Between_Two_Balls
+
+
+
+
+# template:
+low <= hi
+
+111111  0000
+    hi  low
+
+000000  1111
+    hi  low
+
+

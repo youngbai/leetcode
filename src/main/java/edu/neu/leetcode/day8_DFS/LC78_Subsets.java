@@ -69,7 +69,7 @@ Intuition: consider Nth element, combine it with previous solutions
      Backtracking Template:
      result = []
      def backtracking(path, candidates):
-        if Satisfy the end condition (path):
+        if satisfy the end condition (path):
             result.add(path)
             return
 
@@ -83,13 +83,14 @@ Intuition: consider Nth element, combine it with previous solutions
             path.remove(candidate)
 
      Time:  O(N * 2^N)
-        - O(2^N): there are N numbers and 2 decision ( whether to include or leave a number )
+        - O(2^N): there are N numbers and 2 decision ( whether to include or leave a number ),
+          so the height of this binary tree is N + 1, so there are 2^N nodes, so O(2^N)
         - O(N): copy each combination to result list
      Space: O(N):
         - use O(N) space to maintain the List<Integer> level
      https://medium.com/@vasanths294/permutation-combination-subset-time-complexity-eca924e00071
      */
-    class Solution2 {
+    class Solution2_Backtracking {
         public List<List<Integer>> subsets(int[] nums) {
             List<List<Integer>> res = new ArrayList<>();
             backtracking(res, new ArrayList<Integer>(), nums, 0);
@@ -117,7 +118,7 @@ Intuition: consider Nth element, combine it with previous solutions
       [000]  [001]  [010]  [100]  [101] ... [111]   mask from 0 to 2^N (NOT included)
       [   ]  [003]  [020]  [100]  [103] ... [123]
      */
-    class Solution3 {
+    class Solution3_Bit_Manipulation {
         public List<List<Integer>> subsets(int[] nums) {
             List<List<Integer>> res = new ArrayList<>();
             int N = nums.length, start = 0, end = 1 << N; // end = largest mask + 1 = 2^N

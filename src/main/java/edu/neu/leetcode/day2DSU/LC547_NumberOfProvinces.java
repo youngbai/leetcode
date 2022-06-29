@@ -15,7 +15,7 @@ public class LC547_NumberOfProvinces {
     Optimization:
     1.for i=0 to M:
         for j=i+1 to M:
-      The matrix is symmetric, isConnected[i][j] equals isConnected[j][i].
+      Because the matrix is symmetric, isConnected[i][j] equals isConnected[j][i].
       We don't have to do the same thing twice,
       only need to consider about upper triangular matrix.
 
@@ -81,9 +81,11 @@ public class LC547_NumberOfProvinces {
         public int findCircleNum(int[][] M) {
             boolean[] visited = new boolean[M.length];
             int count = 0;
+
+            // walk through each city
             for (int i = 0; i < M.length; i++) {
                 // if i is visited, it means it already belonged to a province
-                // if i is NOT visited, it means it is a new province
+                // if i is NOT visited, it means it is a new province, start DFS on this new city
                 if (!visited[i]) {
                     dfs(M, visited, i);
                     count++;
@@ -92,12 +94,13 @@ public class LC547_NumberOfProvinces {
             return count;
         }
 
-        public void dfs(int[][] M, boolean[] visited, int person) {
+        public void dfs(int[][] M, boolean[] visited, int curCity) {
+            // for loop other cities to find out if they are connected to current city
             for (int other = 0; other < M.length; other++) {
-                if (M[person][other] == 1 && !visited[other]) {
-                    // we found an unvisited person in the current friend cycle
+                if (M[curCity][other] == 1 && !visited[other]) {
+                    // if we found an unvisited city that connects to current city
                     visited[other] = true;
-                    dfs(M, visited, other); // start DFS on this new found person
+                    dfs(M, visited, other); // start DFS on this new found city
                 }
             }
         }
@@ -114,11 +117,13 @@ public class LC547_NumberOfProvinces {
                 // if i is NOT visited, it means it is a new province
                 if (!visited[i]) {
                     count++;
-                    visited[i] = true;
+                    // begin DFS on i
                     stack.push(i);
-
                     while (!stack.isEmpty()) {
                         int v = stack.pop();
+                        if (visited[v]) continue;
+                        visited[i] = true;
+
                         for (int neighbor = 0; neighbor < M[v].length; neighbor++) {
                             if (M[v][neighbor] == 1 && !visited[neighbor]) {
                                 visited[neighbor] = true;
@@ -144,7 +149,7 @@ public class LC547_NumberOfProvinces {
     Time: O(V^2), because it is an adjacency matrix,
     it walks through every vertices in this matrix
 
-    If graph uses adjacency list, Time is O(V+2E), because it walks through ea ch vertices,
+    If graph uses adjacency list, Time is O(V+2E), because it walks through each vertices,
     and access each edge twice.
     https://www.interviewbit.com/tutorial/breadth-first-search/
      */
@@ -161,7 +166,7 @@ public class LC547_NumberOfProvinces {
                 if (!visited[i]) {
                     count++;
                     visited[i] = true;
-                    queue.offer(i);
+                    queue.offer(i); // BFS on i
                     bfs(isConnected, visited, queue);
                 }
             }
@@ -170,6 +175,7 @@ public class LC547_NumberOfProvinces {
 
         public void bfs(int[][] isConnected, boolean[] visited, Queue<Integer> queue) {
             if (queue.isEmpty()) return;
+
             int v = queue.poll();
             for (int neighbor = 0; neighbor < isConnected[v].length; neighbor++) {
                 if (isConnected[v][neighbor] == 1 && !visited[neighbor]) {

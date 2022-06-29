@@ -1,19 +1,19 @@
-Backtracking Template:
- result = []
- def backtracking(path, candidates):
-    if Satisfy the end condition (path):
-        result.add(path)
-        return
+# Backtracking Template:
+result = []
+def backtracking(path, candidates):
+   if satisfy the end condition (path):
+       result.add(path)
+       return
 
-    # iterate all possible candidates.
-    for candidate in candidates:
-        # try this partial candidate solution
-        path.add(candidate)
-        # DFS: based on this candidate, explore further
-        backtracking(path, candidates)
-        # backtrack
-        path.remove(candidate)
+   # iterate all possible candidates.
+   for candidate in candidates:
+       # try this partial candidate solution
+       path.add(candidate)
+       # DFS: based on this candidate, explore further
+       backtracking(path, candidates)
+       # backtrack
+       path.remove(candidate)
 
 
-Permutation Combination Subset ( Time Complexity )
+# Permutation Combination Subset ( Time Complexity )
 https://medium.com/@vasanths294/permutation-combination-subset-time-complexity-eca924e00071

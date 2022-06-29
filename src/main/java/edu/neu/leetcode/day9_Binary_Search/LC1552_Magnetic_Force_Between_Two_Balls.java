@@ -11,7 +11,7 @@ public class LC1552_Magnetic_Force_Between_Two_Balls {
       - the shortest distance is when ball next to each other, so answer >= 1
       - the longest distance is when two balls at the ends of baskets, so answer <= position[position.length - 1] - position[0]
     - then binary search between low (`shortest distance`) and high (`longest distance`)
-    - use valid() to check if we put balls into baskets with minDistance
+    - use valid() to check if we can put balls into baskets with minDistance
       - if we can, it means the answer can be larger
       - if we can not, it means the answer should be smaller
 

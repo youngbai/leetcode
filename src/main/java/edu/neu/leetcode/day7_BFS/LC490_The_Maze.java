@@ -15,7 +15,8 @@ public class LC490_The_Maze {
     Algo:
     boolean[][] visited
     Q = Queue()
-    Q.offer(start), and mark start visited, visited[start] = true
+    visited[start] = true
+    Q.offer(start)   # mark start visited
     while Q is not empty:
         cur = Q.poll()
         if cur is destination: return true
@@ -34,10 +35,14 @@ public class LC490_The_Maze {
     class Solution1 {
         int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         public boolean hasPath(int[][] maze, int[] start, int[] destination) {
+            // init visited, Queue
             boolean[][] visited = new boolean[maze.length][maze[0].length];
             Queue<int[]> q = new LinkedList<>();
+
+            // start from source vertex
             q.offer(start);
             visited[start[0]][start[1]] = true;
+
             while (!q.isEmpty()) {
                 int[] cur = q.poll();
                 if (cur[0] == destination[0] && cur[1] == destination[1]) return true;
@@ -51,8 +56,8 @@ public class LC490_The_Maze {
                     x -= dir[0];
                     y -= dir[1];
                     if (!visited[x][y]) {
-                        q.offer(new int[]{x, y});
                         visited[x][y] = true;
+                        q.offer(new int[]{x, y});
                     }
                 }
             }
@@ -88,8 +93,10 @@ public class LC490_The_Maze {
         }
 
         public boolean dfs(int[][] maze, int[] start, int[] destination, boolean[][] visited) {
+            // base case
             if (visited[start[0]][start[1]]) return false;
             if (start[0] == destination[0] && start[1] == destination[1]) return true;
+
             visited[start[0]][start[1]] = true;
             for (int[] dir : dirs) {
                 int x = start[0] + dir[0], y = start[1] + dir[1];

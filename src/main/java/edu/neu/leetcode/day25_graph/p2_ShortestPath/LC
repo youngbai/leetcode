@@ -1,0 +1,49 @@
+787
+
+# Graph
+- Algorithm
+    - BFS
+    - DFS
+    - Dijkstra
+    - Bellman-Ford
+    - Floyd-Warshall
+- Aspects of a Graph
+    - directed vs undirected
+    - weighted vs unweighted
+    - cyclic vs acyclic
+- Rule of Thumb for Solving Shortest Path Problems
+    - BFS : unweighted graphs
+    - Dijkstra : positive weighted graphs (An implied condition to apply the Dijkstra's algorithm is that the weights of the graph must be POSITIVE.)
+    - Bellman Ford : negative weighted graphs
+
+
+# Single Source Shortest Path (SSSP)
+- Dijkstra
+- Bellman-Ford
+
+# Multiple Source Shortest Path
+- Floyd-Warshall
+
+
+# Pseudocode code:
+Dijkstra:
+    G
+    distance[N] = {MAX}
+    visited[N] = {false}
+    pre[N]
+
+    start from src
+    distance[src]=0
+    pre[src]=-1
+    q.offer(src)
+
+    while q is not empty
+        int u = q.poll()
+        visited[u]=true
+
+        for (nei : G.get(u))
+            if nei is not visited
+                if distance[u] + G.get(u).get(nei) < distance[nei]
+                    distance[nei] = distance[u] + G.get(u).get(nei)
+                    pre[nei] = u
+                    q.offer(nei)

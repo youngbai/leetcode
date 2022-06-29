@@ -15,7 +15,7 @@ Time: O(32N)
 
 2.With Trie
 for i=0 to n:       // O(n)
-    trie.insert(nums[i)
+    trie.insert(nums[i])
 trie.findMaxXor(x)  // O(32)
 Time: O(N+32)
 Note: Building Trie costs O(n), but it can be reused in constant time complexity O(32),
@@ -36,7 +36,7 @@ public class LC421_MaxXOR {
     for i=0 to n:                                      // O(n)
         for j=0 to n:                                  // O(n)
             res = max(nums[i]^nums[j]), where i != j   // O(32)
-    Time:  O(32n^2)
+    Time:  O(32*n^2)
     Space: O(1)
 
     Method2: Trie (2-array trie)

@@ -41,7 +41,7 @@ public class LC53_Maximum_Subarray {
       - Uses elements only from the right side
       - Uses a combination of elements from both the left and right side
         - In this case, the left side and right side MUST connect to mid element
-        - so there only a few subarray; We only need to find the max of these subarray
+        - so there are only a few subarray; We only need to find the max of these subarray
           e.g. mid, x1, x2, x3
           []
           [x1]
