@@ -14,9 +14,10 @@ public class LC523_Continuous_Subarray_Sum {
      */
     class Solution1_PrefixSum {
         public boolean checkSubarraySum(int[] nums, int k) {
-            int prefix = 0;  // prefix remainder
             Map<Integer, Integer> map = new HashMap<>();  // map(prefix_remainder, index)
             map.put(0, -1);  // init prefix remainder
+
+            int prefix = 0;  // prefix remainder
             for (int i = 0; i < nums.length; i++) {
                 prefix = (prefix + nums[i] % k) % k; // make sure k is > 0
                 if (map.containsKey(prefix)){

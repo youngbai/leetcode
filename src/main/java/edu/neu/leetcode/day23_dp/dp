@@ -1,3 +1,8 @@
+LC509_Fibonacci_Number
+LC53_Maximum_Subarray
+LC198_House_Robber
+
+
 什么时候用dp？
 In general, 当你发现大问题的解可以用小问题的解拼凑而成的时候。
 
@@ -5,4 +10,5 @@ In general, 当你发现大问题的解可以用小问题的解拼凑而成的�
 consider dynamic programming, i.e. max/min area, max/min amount, max/min length, total number of sth, can or cannot
 for smaller problem size K < N and see if these solutions can be logically combined into final solution for problem
 size K = N
+
 

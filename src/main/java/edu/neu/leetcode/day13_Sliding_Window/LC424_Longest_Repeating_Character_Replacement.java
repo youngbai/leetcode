@@ -21,7 +21,7 @@ public class LC424_Longest_Repeating_Character_Replacement {
     ABAB    [A:2,B:2]        4-2=2=k        4
     ABABB   [A:2,B:3]        5-3=2=k        5
     ABABBA  [A:3,B:3]        6-3=3>k        5       need shrink left
-    BABBA   [A:2,B:3]        5-3=2=k        5       after shrink left
+     BABBA  [A:2,B:3]        5-3=2=k        5       after shrink left
 
     Time:  O(26N)
     Space: O(26)

@@ -51,8 +51,10 @@ public class LC509_Fibonacci_Number {
      */
     class Solution2_DP_Iteration {
         public int fib(int n) {
+            // base case
             if (n <= 1) return n;
 
+            // memoization
             int[] A = new int[n + 1];
             A[0] = 0;
             A[1] = 1;

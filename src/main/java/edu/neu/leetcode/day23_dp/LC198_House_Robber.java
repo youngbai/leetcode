@@ -14,7 +14,7 @@ public class LC198_House_Robber {
 
     - Intuition: rob the current(i-th) house or not
     - init:
-      A[0]=0, A[1]=nums[1]
+      A[0]=0, A[1]=nums[0]
     - transit function:
       f(i)=max(f(i-1), f(i-2)+nums(i-1))
 

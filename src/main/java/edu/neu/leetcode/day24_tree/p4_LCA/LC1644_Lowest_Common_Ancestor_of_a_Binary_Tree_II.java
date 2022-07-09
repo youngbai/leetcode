@@ -22,11 +22,14 @@ public class LC1644_Lowest_Common_Ancestor_of_a_Binary_Tree_II {
             // base case
             if (root == null) return null;
 
-            if (root.val == target) return root;
-            TreeNode left = dfs(root.left, target);
+            if (root.val == target) return root;        // root
+
+            TreeNode left = dfs(root.left, target);     // left
             if (left != null) return left;
-            TreeNode right = dfs(root.right, target);
+
+            TreeNode right = dfs(root.right, target);   // right
             if (right != null) return right;
+
             return null;
         }
 
@@ -49,7 +52,7 @@ public class LC1644_Lowest_Common_Ancestor_of_a_Binary_Tree_II {
     - only need 1 traversal
     Time: O(N)
      */
-    class Solution2_ {
+    class Solution2_Postorder {
         int count = 0;
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
             TreeNode LCA = LCA(root, p, q);
@@ -60,9 +63,9 @@ public class LC1644_Lowest_Common_Ancestor_of_a_Binary_Tree_II {
         private TreeNode LCA(TreeNode root, TreeNode p, TreeNode q) {
             if (root == null) return null;
 
-            TreeNode left = LCA(root.left, p, q);   // left
-            TreeNode right = LCA(root.right, p, q); // right
-            if (root == p || root == q) {           // root
+            TreeNode left = LCA(root.left, p, q);   // left, after left LCA, count for left tree is maintained
+            TreeNode right = LCA(root.right, p, q); // right, after right LCA, count for right tree is maintained
+            if (root == p || root == q) {           // root, because p q are already counted, safely return root
                 count++;
                 return root;
             }

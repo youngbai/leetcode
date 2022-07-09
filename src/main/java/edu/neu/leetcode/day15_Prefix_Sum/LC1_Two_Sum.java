@@ -7,7 +7,7 @@ public class LC1_Two_Sum {
 
     class Solution {
         public int[] twoSum(int[] nums, int target) {
-            //    diff   index
+            //    nums[i]   i
             Map<Integer, Integer> map = new HashMap<>();
             for (int i = 0; i < nums.length; i++) {
                 int diff = target - nums[i];

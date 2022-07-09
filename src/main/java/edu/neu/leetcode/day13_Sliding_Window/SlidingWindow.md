@@ -1,4 +1,6 @@
 Sliding Window Algo
-- current element enters window
-- left element exit window
-- calculate result
+- enter: current element enters window
+- exit:  left element exit window
+- calculate: calculate result
+
+

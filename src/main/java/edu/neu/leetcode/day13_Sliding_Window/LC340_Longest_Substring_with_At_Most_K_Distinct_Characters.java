@@ -33,7 +33,7 @@ public class LC340_Longest_Substring_with_At_Most_K_Distinct_Characters {
                     left++;
                 }
 
-                // calcualte result
+                // calculate result
                 res = Math.max(res, r - left + 1);
             }
             return res;

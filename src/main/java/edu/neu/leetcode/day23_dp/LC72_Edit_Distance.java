@@ -7,6 +7,7 @@ public class LC72_Edit_Distance {
     /*
     Thinking:
     - recursive
+    - TLE
 
     Algo:
     if word1 is empty
@@ -18,10 +19,10 @@ public class LC72_Edit_Distance {
     if w1(i-1) == w2(j-1)
         dp(i,j) = dp(i-1, j-1)
     else
-        replace dp(i,j) = dp(i-1, j-1) + 1
-        delete  dp(i,j) = dp(i-1, j)   + 1
-        insert  dp(i,j) = dp(i, j-1)   + 1
-        dp(i,j) = min(replace, delete, insert)
+        replace dp(i,j) = dp(i-1, j-1)
+        delete  dp(i,j) = dp(i-1, j)
+        insert  dp(i,j) = dp(i, j-1)
+        dp(i,j) = 1 + min(replace, delete, insert)
 
     Problem:
     - too many repeated calculations
@@ -57,6 +58,28 @@ public class LC72_Edit_Distance {
                 int delete = minDistance(word1.substring(1), word2);
                 int insert = minDistance(word1, word2.substring(1));
                 return 1 + Math.min(Math.min(replace, delete), insert);
+            }
+        }
+    }
+
+    // same as Solution1_Recursion
+    class Solution1_1_Recursion {
+        public int minDistance(String word1, String word2) {
+            return minDist(word1, word2, 0, 0);
+        }
+
+        private int minDist(String word1, String word2, int i, int j) {
+            // base case
+            if (i == word1.length()) return word2.length() - j;
+            if (j == word2.length()) return word1.length() - i;
+
+            if (word1.charAt(i) == word2.charAt(j)) {
+                return minDist(word1, word2, i + 1, j + 1);
+            } else {
+                int replace = minDist(word1, word2, i + 1, j + 1);
+                int delete = minDist(word1, word2, i + 1, j);
+                int insert = minDist(word1, word2, i, j + 1);
+                return 1 + Math.min(replace, Math.min(delete, insert));
             }
         }
     }

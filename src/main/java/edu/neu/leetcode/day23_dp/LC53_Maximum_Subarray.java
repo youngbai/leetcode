@@ -19,8 +19,8 @@ public class LC53_Maximum_Subarray {
     class Solution1_DP_KadaneAlgo {
         public int maxSubArray(int[] nums) {
             int curMax = 0, sumMax = Integer.MIN_VALUE;
-            for (int i = 0; i < nums.length; i++) {
-                curMax += nums[i];
+            for (int num : nums) {
+                curMax += num;
                 // if curMax > sumMax, update sumMax equals to curMax
                 if (curMax > sumMax) sumMax = curMax;
                 // if curMax is negative, throw it away, reset curMax = 0

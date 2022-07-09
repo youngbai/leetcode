@@ -43,14 +43,16 @@ public class LC560_Subarray_Sum_Equals_K {
      */
     class Solution2_PrefixSum_TwoSum {
         public int subarraySum(int[] nums, int k) {
-            // prefix sum using map
+            // prefix sum using map  <prefix_sum, times of appearance>
             Map<Integer, Integer> map = new HashMap<>();  // map(prefix_sum, frequency)
             map.put(0, 1);
 
             int sum = 0, res = 0;   // sum is prefix sum
             for (int n : nums) {    // O(N)
                 sum += n;
+                // Note: check first
                 if (map.containsKey(sum - k)) res += map.get(sum - k);
+                // Note: then put to map
                 map.put(sum, map.getOrDefault(sum, 0) + 1);
             }
             return res;

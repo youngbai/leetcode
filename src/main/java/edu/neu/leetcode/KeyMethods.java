@@ -74,6 +74,38 @@ public class KeyMethods {
     }
 
     @Test
+    public void List_sort() {
+        // natural sort with null
+        List<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(4);
+        list.add(2);
+        list.add(1);
+        list.sort(null);
+        System.out.println(list);
+
+        System.out.println("------------------------------");
+
+        // sort using comparator
+        List<int[]> list2 = new ArrayList<>();
+        list2.add(new int[]{3, 3});
+        list2.add(new int[]{1, 1});
+        list2.add(new int[]{1, 2});
+        list2.add(new int[]{5, 1});
+        list2.add(new int[]{5, 2});
+        list2.sort((a, b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
+
+        for (int[] row : list2) {
+            System.out.println(Arrays.toString(row));
+        }
+
+        System.out.println("-------------Collections.sort-----------------");
+        Collections.sort(list);
+        Collections.sort(list2, (a, b) -> a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
+    }
+
+
+    @Test
     public void Math_log() {
         // Math.log returns the natural logarithm (base e) of a double value.
         System.out.println(Math.log(16));   // 2.772588722239781

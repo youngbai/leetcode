@@ -1,5 +1,5 @@
 
-P1
+P1: 1480. Running Sum of 1d Array
 
 Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
 
@@ -24,14 +24,15 @@ def solution(nums):	[1]
 		prefix[i] = prefix[i - 1] + nums[i]
 	return prefix
 
-P2
+P2: 303. Range Sum Query - Immutable
 
 Given an integer array nums, handle multiple queries of the following type:
 Calculate the sum of the elements of nums between indices left and right inclusive where left <= right.
-nums =           [-2, 0, 3, -5, 2, -1]l
-prefixsum =  [-2, -2, 1, -4. -2. -3]
+nums =        [-2, 0, 3, -5, 2, -1]
+prefixsum =  [-2, -2, 1, -4, -2, -3]
+                   l      r
 if l == 0:
-return prefix[r] - 0              ^       ^
+    return prefix[r] - 0
 prefix[r] - prefix[l-1]
 
 class Solution:
@@ -46,7 +47,6 @@ class Solution:
 		return self.prefix[right] - self.prefix[left - 1]
 
 
-
 queries:
 [0, 2]	-> 1
 [2, 5]-> -1
@@ -55,7 +55,7 @@ queries:
 prefix[right] - prefix[left]
 
 
-P3
+P3: 523. Continuous Subarray Sum
 
 Given an array of integers nums and an integer Target, return if there exists a subarray whose sum equals to Target.
 A subarray is a contiguous non-empty sequence of elements within an array.
@@ -63,14 +63,14 @@ Input: nums = [1,2,3,4], Target = 9 or 10 Output: True
 Input: nums = [1,2,3,4], Target = 8 Output: False
 
 def solution(nums, target):
-prefix_set = set([0])
-prefix_sum = 0
-for num in nums:
-	preifx_sum += num
-	if prefix_sum - target in prefix_set:
-		return True
-		prefix_set.add(prefix_set)
-return False
+    prefix_set = set([0])
+    prefix_sum = 0
+    for num in nums:
+        preifx_sum += num
+        if prefix_sum - target in prefix_set:
+            return True
+            prefix_set.add(prefix_set)
+    return False
 
 
 def solution(nums, target):
@@ -95,11 +95,15 @@ Input: nums = [1,-1,5,-2,1,2], Target = 3 Output: 2
 Input: nums = [1,-1,5,-2,1,2], Target = 3 Output: 4
 
 
-P4
+P4: 525. Contiguous Array
 
 Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1.
 Input: nums = [1,1,1,0,1,0,0,1,1,0,1,1,1], Output: 8
 
 	        [1,1,1,-1,1,-1,-1,1,1,-1,1,1,1]		target = 0
+A: find the farthest 0 or 1
 
+follow-up:
+Q: find the minimum length of .....
+A: find the nearest 0 or 1
 
