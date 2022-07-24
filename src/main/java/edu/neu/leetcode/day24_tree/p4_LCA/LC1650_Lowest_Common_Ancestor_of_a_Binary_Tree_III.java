@@ -20,8 +20,8 @@ public class LC1650_Lowest_Common_Ancestor_of_a_Binary_Tree_III {
         public Node lowestCommonAncestor(Node p, Node q) {
             Set<Node> set = new HashSet<>();
             while (true) {
-                if (p != null && !set.add(p)) return p;
-                if (q != null && !set.add(q)) return q;
+                if (p != null && !set.add(p)) return p;     // add p
+                if (q != null && !set.add(q)) return q;     // add q
                 if (p != null) p = p.parent;
                 if (q != null) q = q.parent;
             }

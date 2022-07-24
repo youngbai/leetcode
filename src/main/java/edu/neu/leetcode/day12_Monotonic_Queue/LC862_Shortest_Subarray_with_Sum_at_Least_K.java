@@ -53,12 +53,13 @@ public class LC862_Shortest_Subarray_with_Sum_at_Least_K {
     class Solution {
         public int shortestSubarray(int[] nums, int k) {
             int N = nums.length, res = N + 1;
-            // prefix sum
+
+            // 1.prefix sum
             long[] ps = new long[N + 1];   // use long instead of int
             for (int i = 1; i < N + 1; i++) ps[i] = ps[i - 1] + nums[i - 1];
             //System.out.println("prefix sum: "+ Arrays.toString(ps));
 
-            // find shortest subarray by going through prefix sum
+            // 2.find shortest subarray by going through prefix sum
             // goal: ps[j] - ps[i] >= k && (j - i) is shortest
             Deque<Integer> q = new ArrayDeque<>();
             for (int i = 0; i < N + 1; i++) {

@@ -24,7 +24,7 @@ public class LC200_Number_of_Islands {
         }
 
         private void dfs(char[][] grid, int i, int j) {
-            grid[i][j] = '0'; // submerge this island, which means it is visited
+            grid[i][j] = '0'; // submerge this island, which means it is visited, inorder to prevent revisiting
             int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
             for (int[] dir : dirs) {
                 int x = i + dir[0], y = j + dir[1];

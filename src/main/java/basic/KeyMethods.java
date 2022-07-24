@@ -1,4 +1,4 @@
-package edu.neu.leetcode;
+package basic;
 
 import org.junit.jupiter.api.Test;
 

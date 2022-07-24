@@ -15,14 +15,22 @@ public class LC505_The_Maze_II {
         - int[][] distance = {MAX.VALUE}
     - if we wanna shortest distance, we have to traverse every possible route,
         then wen are able to find the shortest one
+      e.g.
+               count
+          u  ----------  v
+      if distance(u) + count < distance(v)
+        distance(v) = distance(u) + count
+
     - How do we traverse every possible route?
         - BFS, DFS
 
     Algo:
     int[][] distance = {MAX.VALUE}
     distance(start) = 0
+
     Q = Queue()
     Q.offer(start)
+
     while Q is not empty:
         cur = Q.poll()
         start from cur, try 4 directions until hit the wall, get new position (x,y) with `count` steps

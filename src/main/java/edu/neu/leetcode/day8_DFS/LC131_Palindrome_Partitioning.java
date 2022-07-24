@@ -26,16 +26,17 @@ public class LC131_Palindrome_Partitioning {
         }
 
         private void dfs(List<List<String>> res, String s, List<String> path, int start) {
-            if (start >= s.length()) {
+            if (start == s.length()) {     // there is no more substring to search
                 res.add(new ArrayList<String>(path));
                 return;
             }
 
             for (int end = start; end < s.length(); end++) {
+                // deal with s.substring(start, end+1)
                 if (isPalindrome(s, start, end)) {
-                    path.add(s.substring(start, end + 1));
-                    dfs(res, s, path, end + 1);
-                    path.remove(path.size() - 1);
+                    path.add(s.substring(start, end + 1));  // add the palindrome substring into path
+                    dfs(res, s, path, end + 1);       // search the remained substring
+                    path.remove(path.size() - 1);    // remove the current palindrome string and try other substring
                 }
             }
         }
@@ -58,7 +59,7 @@ public class LC131_Palindrome_Partitioning {
     - use DP to optimize isPalindrome()
 
     Example:
-                                        abba
+                                  abba
                      /				  |		 \		\
                    a|bba		    ab|ba	abb|a	abba
             /		  \		\

@@ -1,0 +1,28 @@
+LC239_Sliding_Window_Maximum
+LC862_Shortest_Subarray_with_Sum_at_Least_K
+LC1425_Constrained_Subsequence_Sum
+LC1438_Longest_Continuous_Subarray_With_Absolute_Diff_Less_Than_or_Equal_to_Limit
+LC1696_Jump_Game_VI
+
+
+Steps:
+- pollFirst()       // 左出q，保证窗口大小k-1
+- pollLast()        // 右出q，保证递减队列
+- offerLast()       // 进q，此时q.size == k
+- peekFirst()       // 使用q左边最大值处理结果，可以在不同位置
+
+
+Template:
+public int[] monotonicQueue(int[] nums, int k) {
+    int N = nums.length;
+    Deque<Integer> q = new ArrayDeque<>();
+    int[] res = new int[N - k + 1];
+    for (int i = 0; i < N; i++) {
+        while (!q.isEmpty() && i - q.peekFirst() >= k) q.pollFirst();       // 左出q，保证窗口大小k-1
+        while (!q.isEmpty() && nums[q.peekLast()] <= nums[i]) q.pollLast(); // 右出q，保证递减队列
+        q.offerLast(i);                                                     // 进q，此时q.size == k
+        q.peekFirst();  // use in the res                                   // 使用q左边最大值处理结果，可以在不同位置
+    }
+    return res;
+}
+

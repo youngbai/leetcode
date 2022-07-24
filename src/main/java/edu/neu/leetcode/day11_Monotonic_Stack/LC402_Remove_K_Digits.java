@@ -55,7 +55,7 @@ public class LC402_Remove_K_Digits {
             // remove the prefix 0
             StringBuilder sb = new StringBuilder();
             boolean zero = true;
-            Iterator<Character> iter = stack.descendingIterator();
+            Iterator<Character> iter = stack.descendingIterator();  // NOTE: stack.descendingIterator()  tail->head
             while (iter.hasNext()) {
                 char n = iter.next();
                 if (zero && n == '0') continue;

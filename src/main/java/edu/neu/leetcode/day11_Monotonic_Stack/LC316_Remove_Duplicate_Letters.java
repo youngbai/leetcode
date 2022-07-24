@@ -23,6 +23,7 @@ public class LC316_Remove_Duplicate_Letters {
 
     Example:
     String = C B A C D C B C
+               -------->
     stack:   C      # C is not visited, and stack is empty
              B      # B < C && C is not last occurrence
              A      # A < B && B is not last occurrence
@@ -39,7 +40,7 @@ public class LC316_Remove_Duplicate_Letters {
         public String removeDuplicateLetters(String s) {
             Deque<Integer> stack = new ArrayDeque<>();
 
-            int[] last = new int[128];  // The index of the last occurrence of the letter
+            int[] last = new int[128];  // last saves the index of the last occurrence of the letter
             for (int i = 0; i < s.length(); i++) last[s.charAt(i)] = i;
 
             Set<Integer> visited = new HashSet<>(); // store visited char

@@ -38,7 +38,8 @@ public class LC209_Minimum_Size_Subarray_Sum {
                 // shrink left
                 while (sum >= target) {
                     minlen = Math.min(minlen, r - left + 1);
-                    sum -= nums[left++];
+                    sum -= nums[left];
+                    left++;
                 }
             }
             return minlen == Integer.MAX_VALUE? 0: minlen;

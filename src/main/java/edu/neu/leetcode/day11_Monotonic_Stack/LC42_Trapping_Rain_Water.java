@@ -77,10 +77,10 @@ public class LC42_Trapping_Rain_Water {
         public int trap(int[] height) {
             Deque<Integer> stack = new ArrayDeque<>();
             int N = height.length, res = 0;
-            for (int i = 0; i < N; i++) { // walk throught each element
+            for (int i = 0; i < N; i++) { // walk through each element
                 while (!stack.isEmpty() && height[i] > height[stack.peek()]) { // meet an increasing height, find possible sinks
                     int bottomIndex = stack.pop();
-                    if (stack.isEmpty()) break;
+                    if (stack.isEmpty()) break;     // there is left wall, exit while loop
                     int leftIndex = stack.peek();
 
                     // computer space of the sink
@@ -117,10 +117,16 @@ public class LC42_Trapping_Rain_Water {
             if (height.length == 0) return 0;
             int res = 0, N = height.length;
             int[] left = new int[N], right = new int[N];
-            left[0] = height[0];    // let the sun shine from the left and get some shadows
-            right[N - 1] = height[N - 1]; // let the sun shine from the right and get some shadows
+
+            // let the sun shine from the left and get some shadows
+            left[0] = height[0];
             for (int i = 1; i < N; i++) left[i] = Math.max(height[i], left[i - 1]);
+
+            // let the sun shine from the right and get some shadows
+            right[N - 1] = height[N - 1];
             for (int i = N - 2; i >= 0; i--) right[i] = Math.max(height[i], right[i + 1]);
+
+            // calculate the common shadows
             for (int i = 0; i < N; i++) res += Math.min(left[i], right[i]) - height[i];
             return res;
         }

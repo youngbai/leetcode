@@ -33,11 +33,12 @@ public class Monotonic_Stack_Tpl {
 
             Deque<Integer> stack = new ArrayDeque<>();
             for (int i = nums.length - 1; i >= 0; i--) {
-                // pop all the element <= current element
+                // pop all the element <= current element,
+                // so in the next step, stack.peek() will return the next greater element
                 while (!stack.isEmpty() && nums[i] >= stack.peek()) stack.pop();
-                // save current result
-                res[i] = stack.isEmpty() ? -1 : stack.peek();
-                // push current element
+                // find out the next greater element
+                res[i] = stack.isEmpty() ? -1 : stack.peek();       // NOTE: stack.isEmpty()
+                // push current element to stack
                 stack.push(nums[i]);
             }
             return res;

@@ -16,6 +16,7 @@ public class LC496_Next_Greater_Element_I {
      */
     class Solution1_monotonic_stack {
         public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+            //  element --> next_greater_element
             Map<Integer, Integer> map = new HashMap<>();
             Deque<Integer> stack = new ArrayDeque<>();
             for (int i = nums2.length - 1; i >= 0; i--) {
@@ -24,6 +25,8 @@ public class LC496_Next_Greater_Element_I {
                 map.put(nums2[i], nextGreaterNum);
                 stack.push(nums2[i]);
             }
+
+            // built the result
             int[] res = new int[nums1.length];
             for (int i = 0; i < nums1.length; i++) res[i] = map.get(nums1[i]);
             return res;

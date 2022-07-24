@@ -1,6 +1,6 @@
 # DFS recursion template
 def dfs(Graph g, vertex v, boolean[] visited)
-    # if v has been visited, return
+    if v has been visited, return
     visit(v)
     for each neighbor u of v
         if u is unvisited
@@ -38,9 +38,10 @@ def bfs(Graph g, Queue q, visited[])
 
 # BFS iteration template
 def bfs(Graph g)
-	Queue q, visited[]
-	visit(source vertex)
-	q.offer(source vertex)
+	Queue q, visited[] or Set
+
+	visit(source vertex)        # visit source vertex
+	q.offer(source vertex)      # start from source vertex
 
 	while q is not empty
 		v = q.poll()

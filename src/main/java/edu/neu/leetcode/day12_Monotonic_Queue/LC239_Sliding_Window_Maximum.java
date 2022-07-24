@@ -126,6 +126,24 @@ public class LC239_Sliding_Window_Maximum {
         }
     }
 
+    class Solution2_Priority_Queue2 {
+        public int[] maxSlidingWindow(int[] nums, int k) {
+            int N = nums.length;
+            int[] res = new int[N - k + 1];
+            // PQ (value DESC, index AEC)
+            PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] != b[0]? b[0] - a[0] : a[1] - b[1]);
+
+            for (int i = 0; i < N; i++) {
+                // if index <= i - k, it is out of window
+                while (!pq.isEmpty() && pq.peek()[1] <= i - k) pq.poll();
+                pq.offer(new int[]{nums[i], i});
+                if (i - k + 1 >= 0) res[i - k + 1] = pq.peek()[0];
+            }
+
+            return res;
+        }
+    }
+
 
     /*
     Thinking:

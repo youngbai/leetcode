@@ -1,4 +1,4 @@
-package tiktok;
+package experience.tiktok;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

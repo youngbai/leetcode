@@ -16,17 +16,17 @@ public class LC76_Minimum_Window_Substring {
     - s includes t
 
     Algo:
-    int left = 0, minStart = 0, minLen = MAX, count
+    int left = 0, minStart = 0, minLen = MAX, count = 0
     map = {}
-    for i = 0 to t.length   // init map
+    for i = 0 to t.length   // init map with string t
         map.put(t(i), +1)
-    for r = 0 to s.length   // go through each char
+
+    for r = 0 to s.length   // go through each char of s
         // add char to window (expand right), update map, count
         c = s(r)
         if map has c:
             if map(c) > 0, then count++
             map(c)--
-
 
         // check if it is valid substring
         while count == t.length:

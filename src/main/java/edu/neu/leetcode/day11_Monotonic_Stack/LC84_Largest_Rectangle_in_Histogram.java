@@ -26,6 +26,31 @@ public class LC84_Largest_Rectangle_in_Histogram {
     Time: O(2N)
     Space: O(2N), left array, right array
      */
+    class Solution0_Monotonic_stack {       // Easy to understand, Good one
+        public int largestRectangleArea(int[] heights) {
+            int res = 0, N = heights.length;
+            Deque<Integer> stack = new ArrayDeque<>();
+            for (int i = 0; i < N; i++) {
+                while (!stack.isEmpty() && heights[i] <= heights[stack.peek()]) {
+                    int h = heights[stack.pop()];
+                    int left = stack.isEmpty() ? 0 : stack.peek() + 1;
+                    int w = i - left;
+                    res = Math.max(res, h * w);
+                }
+                stack.push(i);
+            }
+
+            while (!stack.isEmpty()) {
+                int h = heights[stack.pop()];
+                int left = stack.isEmpty() ? 0 : stack.peek() + 1;
+                int w = N - left;
+                res = Math.max(res, h * w);
+            }
+            return res;
+        }
+    }
+
+
     class Solution1_Monotonic_stack {
         public int largestRectangleArea(int[] heights) {
             int res = 0, N = heights.length;

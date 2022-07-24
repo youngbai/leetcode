@@ -37,7 +37,7 @@ public class LC127_Word_Ladder {
                     for (int j = 0; j < N; j++) {
                         for (char letter = 'a'; letter <= 'z'; letter++) {
                             StringBuilder next = new StringBuilder(cur);    // NOTE: String -> StringBuilder, and setCharAt(index, char)
-                            next.setCharAt(j, letter);                      // NOTE: setCharAt()
+                            next.setCharAt(j, letter);                      // NOTE: setCharAt(index, char)
                             String nextWord = next.toString();              // NOTE: StringBuilder -> String
                             if (set.contains(nextWord)) {
                                 if (nextWord.equals(endWord)) return step + 1;
@@ -58,8 +58,10 @@ public class LC127_Word_Ladder {
         public int ladderLength(String beginWord, String endWord, List<String> wordList) {
             Set<String> words = new HashSet<>(wordList); // is used to avoid repeated access to same word
             Queue<String> q = new LinkedList<>();
+
             words.remove(beginWord);
             q.offer(beginWord);
+
             int level = 0;
             while (!q.isEmpty()) {
                 int size = q.size();

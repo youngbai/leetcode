@@ -4,3 +4,6 @@ Sliding Window Algo
 - calculate: calculate result
 
 
+Sliding Window Question
+- substring, subarray, LinkedList
+- min, max, longest, shortest
