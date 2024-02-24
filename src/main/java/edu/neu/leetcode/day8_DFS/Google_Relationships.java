@@ -1,4 +1,4 @@
-package experience.google;
+package edu.neu.leetcode.day8_DFS;
 
 import org.junit.jupiter.api.Test;
 
@@ -6,7 +6,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class Relationships {
+public class Google_Relationships {
 
 /*
 Question:

@@ -7,7 +7,7 @@ public class LC1392_Longest_Happy_Prefix {
     - Rolling Hash
     - 1e9 is simply 10^9
     - 1e-9 is simply 10^-9
-    - 1e9 and 1e-9 are double type
+    - 1e9 and 1e-9 are double type, not long, not int <----- NOTE
 
     Example:
     123888123

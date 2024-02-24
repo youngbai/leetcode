@@ -42,7 +42,7 @@ public class LC1723_Find_Minimum_Time_to_Finish_All_Jobs {
             // try different assignment by backtracking
             Set<Integer> used = new HashSet<>();
             for (int i = 0; i < sum.length; i++) {
-                // prune3: if two woker with same workload sum[i], only try the first one, ignore others
+                // prune3: if two workers with same workload sum[i], only try the first one, ignore others
                 if (!used.add(sum[i])) continue;
                 sum[i] += jobs[index];
                 dfs(jobs, index - 1, sum);

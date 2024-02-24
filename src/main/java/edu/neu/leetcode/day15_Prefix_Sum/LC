@@ -8,3 +8,14 @@ LC304_Range_Sum_Query_2D_Immutable
 LC209_Minimum_Size_Subarray_Sum
 LC862_Shortest_Subarray_with_Sum_at_Least_K
 
+
+e.g
+nums       ==>  [1,1,1,1,6,-3,-3,1,9, 2]
+prefix sum ==> 0 1 2 3 4 10 7  4 5 14 16
+
+template:
+ps[0] = 0
+ps[i] = ps[i-1] + nums[i-1], where i >= 1
+
+nums[i-1] = ps[i] - ps[i-1] ==>
+nums[i] = ps[i+1] - ps[i], where i >= 0

@@ -57,8 +57,8 @@ public class LC23_Merge_k_Sorted_Lists {
 
     Summary:
     How to figure out Space Complexity of recursive algorithm?
-    1. simple way
-    The Space Complexity of recursive algorithm mainly depends on the depth of recursion
+    1. simple way - recursion tree
+    The Space Complexity of recursive algorithm mainly depends on the depth of recursion tree
     2. Master theorem
     https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)
      */
